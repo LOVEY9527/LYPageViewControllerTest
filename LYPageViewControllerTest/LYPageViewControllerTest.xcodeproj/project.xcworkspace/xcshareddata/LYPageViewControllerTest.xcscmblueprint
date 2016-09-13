@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0A68B24B2BBC2B53E5F5FB933A430EF9515EC83D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F1CD55FB2008ECBC4C22089E768DD8B5889880C8" : 0,
+    "0A68B24B2BBC2B53E5F5FB933A430EF9515EC83D" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7594A2B2-499A-4B78-8E1E-78DA9B4EB10F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F1CD55FB2008ECBC4C22089E768DD8B5889880C8" : "",
+    "0A68B24B2BBC2B53E5F5FB933A430EF9515EC83D" : "LYPageViewControllerTest\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "LYPageViewControllerTest",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "LYPageViewControllerTest\/LYPageViewControllerTest.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/LYLHF\/LYPageViewControllerTest.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0A68B24B2BBC2B53E5F5FB933A430EF9515EC83D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/LYLHF\/FriendsCircleTest.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F1CD55FB2008ECBC4C22089E768DD8B5889880C8"
+    }
+  ]
+}
