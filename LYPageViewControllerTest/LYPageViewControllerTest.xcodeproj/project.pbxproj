@@ -13,8 +13,11 @@
 		01334CA61D87ECC2004CA6D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01334CA51D87ECC2004CA6D2 /* Assets.xcassets */; };
 		01334CA91D87ECC2004CA6D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01334CA71D87ECC2004CA6D2 /* LaunchScreen.storyboard */; };
 		01334CB41D87ECC2004CA6D2 /* LYPageViewControllerTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01334CB31D87ECC2004CA6D2 /* LYPageViewControllerTestTests.m */; };
-		01334CC61D87EF67004CA6D2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01334CC51D87EF67004CA6D2 /* ViewController.m */; };
-		01334CCD1D87F10F004CA6D2 /* LYPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01334CCB1D87F10F004CA6D2 /* LYPageViewController.m */; };
+		B1057BCD1D94FC9900AC6F51 /* LYPageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1057BCB1D94FC9900AC6F51 /* LYPageCollectionViewCell.m */; };
+		B1057BCE1D94FC9900AC6F51 /* LYPageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1057BCC1D94FC9900AC6F51 /* LYPageCollectionViewCell.xib */; };
+		B1057BD41D94FFE200AC6F51 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1057BD21D94FFE200AC6F51 /* ViewController.m */; };
+		B1057BD71D95007100AC6F51 /* LYPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1057BD61D95007100AC6F51 /* LYPageViewController.m */; };
+		B1057BDA1D95010500AC6F51 /* LYPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1057BD91D95010500AC6F51 /* LYPageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,10 +42,15 @@
 		01334CAF1D87ECC2004CA6D2 /* LYPageViewControllerTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LYPageViewControllerTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01334CB31D87ECC2004CA6D2 /* LYPageViewControllerTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYPageViewControllerTestTests.m; sourceTree = "<group>"; };
 		01334CB51D87ECC2004CA6D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		01334CC41D87EF67004CA6D2 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		01334CC51D87EF67004CA6D2 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		01334CCA1D87F10F004CA6D2 /* LYPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPageViewController.h; sourceTree = "<group>"; };
-		01334CCB1D87F10F004CA6D2 /* LYPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPageViewController.m; sourceTree = "<group>"; };
+		B1057BCA1D94FC9900AC6F51 /* LYPageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPageCollectionViewCell.h; sourceTree = "<group>"; };
+		B1057BCB1D94FC9900AC6F51 /* LYPageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPageCollectionViewCell.m; sourceTree = "<group>"; };
+		B1057BCC1D94FC9900AC6F51 /* LYPageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYPageCollectionViewCell.xib; sourceTree = "<group>"; };
+		B1057BD11D94FFE200AC6F51 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B1057BD21D94FFE200AC6F51 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B1057BD51D95007100AC6F51 /* LYPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPageViewController.h; sourceTree = "<group>"; };
+		B1057BD61D95007100AC6F51 /* LYPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPageViewController.m; sourceTree = "<group>"; };
+		B1057BD81D95010500AC6F51 /* LYPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPageView.h; sourceTree = "<group>"; };
+		B1057BD91D95010500AC6F51 /* LYPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,11 +95,8 @@
 				01334CC71D87F10F004CA6D2 /* LYPageViewController */,
 				01334CBE1D87EE71004CA6D2 /* Model */,
 				01334CBF1D87EE71004CA6D2 /* ViewControllers */,
-				01334CC01D87EE71004CA6D2 /* Views */,
 				01334C9C1D87ECC2004CA6D2 /* AppDelegate.h */,
 				01334C9D1D87ECC2004CA6D2 /* AppDelegate.m */,
-				01334CC41D87EF67004CA6D2 /* ViewController.h */,
-				01334CC51D87EF67004CA6D2 /* ViewController.m */,
 				01334CA21D87ECC2004CA6D2 /* Main.storyboard */,
 				01334CA51D87ECC2004CA6D2 /* Assets.xcassets */,
 				01334CA71D87ECC2004CA6D2 /* LaunchScreen.storyboard */,
@@ -128,23 +133,18 @@
 		01334CBF1D87EE71004CA6D2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B1057BD11D94FFE200AC6F51 /* ViewController.h */,
+				B1057BD21D94FFE200AC6F51 /* ViewController.m */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		01334CC01D87EE71004CA6D2 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		01334CC71D87F10F004CA6D2 /* LYPageViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B1057BC91D94FC9900AC6F51 /* Views */,
 				01334CC81D87F10F004CA6D2 /* Model */,
 				01334CC91D87F10F004CA6D2 /* ViewControllers */,
-				01334CCC1D87F10F004CA6D2 /* Views */,
 			);
 			path = LYPageViewController;
 			sourceTree = "<group>";
@@ -159,15 +159,20 @@
 		01334CC91D87F10F004CA6D2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				01334CCA1D87F10F004CA6D2 /* LYPageViewController.h */,
-				01334CCB1D87F10F004CA6D2 /* LYPageViewController.m */,
+				B1057BD51D95007100AC6F51 /* LYPageViewController.h */,
+				B1057BD61D95007100AC6F51 /* LYPageViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		01334CCC1D87F10F004CA6D2 /* Views */ = {
+		B1057BC91D94FC9900AC6F51 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1057BD81D95010500AC6F51 /* LYPageView.h */,
+				B1057BD91D95010500AC6F51 /* LYPageView.m */,
+				B1057BCA1D94FC9900AC6F51 /* LYPageCollectionViewCell.h */,
+				B1057BCB1D94FC9900AC6F51 /* LYPageCollectionViewCell.m */,
+				B1057BCC1D94FC9900AC6F51 /* LYPageCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 			files = (
 				01334CA91D87ECC2004CA6D2 /* LaunchScreen.storyboard in Resources */,
 				01334CA61D87ECC2004CA6D2 /* Assets.xcassets in Resources */,
+				B1057BCE1D94FC9900AC6F51 /* LYPageCollectionViewCell.xib in Resources */,
 				01334CA41D87ECC2004CA6D2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,9 +278,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1057BD41D94FFE200AC6F51 /* ViewController.m in Sources */,
+				B1057BD71D95007100AC6F51 /* LYPageViewController.m in Sources */,
+				B1057BDA1D95010500AC6F51 /* LYPageView.m in Sources */,
 				01334C9E1D87ECC2004CA6D2 /* AppDelegate.m in Sources */,
-				01334CCD1D87F10F004CA6D2 /* LYPageViewController.m in Sources */,
-				01334CC61D87EF67004CA6D2 /* ViewController.m in Sources */,
+				B1057BCD1D94FC9900AC6F51 /* LYPageCollectionViewCell.m in Sources */,
 				01334C9B1D87ECC2004CA6D2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

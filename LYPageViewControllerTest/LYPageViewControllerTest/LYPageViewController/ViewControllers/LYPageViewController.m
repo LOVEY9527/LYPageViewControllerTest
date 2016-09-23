@@ -7,6 +7,7 @@
 //
 
 #import "LYPageViewController.h"
+#import "LYPageView.h"
 
 @interface LYPageViewController ()
 
@@ -14,9 +15,26 @@
 
 @implementation LYPageViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    [self buildView];
+}
+
+/**
+ *  @author liyong
+ *
+ *  搭建界面
+ */
+- (void)buildView
+{
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    LYPageView *pageView = [[LYPageView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
+    [self.view addSubview:pageView];
 }
 
 - (void)didReceiveMemoryWarning {

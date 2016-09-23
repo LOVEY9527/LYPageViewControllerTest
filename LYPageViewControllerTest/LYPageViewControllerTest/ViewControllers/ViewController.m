@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "LYPageViewController.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+/**
+ *  @author liyong
+ *
+ *  样式一
+ *
+ *  @param sender
+ */
+- (IBAction)styleOneClick:(id)sender
+{
+    LYPageViewController *pageStyleOneVC = [[LYPageViewController alloc] init];
+    [self.navigationController pushViewController:pageStyleOneVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
