@@ -27,6 +27,9 @@
                 <constraint firstItem="22f-ve-LQP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="eS4-PN-Bx8"/>
                 <constraint firstItem="22f-ve-LQP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="koN-dB-ZPn"/>
             </constraints>
+            <connections>
+                <outlet property="listTableView" destination="22f-ve-LQP" id="XUO-QN-aCX"/>
+            </connections>
         </collectionViewCell>
     </objects>
 </document>

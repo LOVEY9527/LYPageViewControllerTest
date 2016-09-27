@@ -44,11 +44,24 @@
                                     <action selector="styleOneClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9hS-ek-TQN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZI-IX-qaT">
+                                <rect key="frame" x="263" y="285" width="75" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="X7C-KS-xaE"/>
+                                    <constraint firstAttribute="width" constant="75" id="u7o-5O-vgA"/>
+                                </constraints>
+                                <state key="normal" title="列表样式二"/>
+                                <connections>
+                                    <action selector="styleTwoClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gmO-Rf-EYc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cSd-Pa-I6p" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="128" id="Bei-Br-toA"/>
                             <constraint firstItem="cSd-Pa-I6p" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jNk-qE-z3L"/>
+                            <constraint firstItem="6ZI-IX-qaT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="k3n-jh-fms"/>
+                            <constraint firstItem="6ZI-IX-qaT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oVP-k6-dz1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="样式列表" id="adw-DF-nPw"/>
