@@ -60,6 +60,21 @@
 /**
  *  @author liyong
  *
+ *  区中的行数
+ *
+ *  @param cell      单元格所在列表的模块单元格
+ *  @param listView  单元格所在的列表
+ *  @param indexPath 序号
+ *
+ *  @return 
+ */
+- (NSInteger)pageCollectionViewCell:(nonnull LYPageCollectionViewCell *)cell
+                           listView:(nonnull UITableView *)listView
+              numberOfRowsInSection:(nonnull NSIndexPath *)indexPath;
+
+/**
+ *  @author liyong
+ *
  *  单元格
  *
  *  @param cell      单元格所在列表的模块单元格
@@ -71,6 +86,21 @@
 - (nonnull UITableViewCell *)pageCollectionViewCell:(nonnull LYPageCollectionViewCell *)cell
                                            listView:(nonnull UITableView *)listView
                               cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath;
+
+@optional
+
+/**
+ *  @author liyong
+ *
+ *  列表区数
+ *
+ *  @param cell     单元格所在列表的模块单元格
+ *  @param listView 单元格所在的列表
+ *
+ *  @return 
+ */
+- (NSInteger)numberOfSectionInPageCollectionViewCell:(nonnull LYPageCollectionViewCell *)cell
+                                            listView:(nonnull UITableView *)listView;
 
 @end
 

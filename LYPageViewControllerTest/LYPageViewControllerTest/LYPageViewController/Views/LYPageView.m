@@ -107,9 +107,27 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
 
 #pragma mark - UICollectionViewDataSource
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    if ([self.dataSource respondsToSelector:@selector(numberOfModelSectionInPageView:)])
+    {
+        return [self.dataSource numberOfModelSectionInPageView:self];
+    }
+    
+    return 1;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 1;
+    if ([self.dataSource respondsToSelector:@selector(pageView:numberOfModelInSection:)])
+    {
+        NSIndexPath *modelIndexPath = [NSIndexPath indexPathForRow:0 inSection:section];
+        LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
+        finalIndexPath.modelIndexPath = modelIndexPath;
+        return [self.dataSource pageView:self numberOfModelInSection:finalIndexPath];
+    }
+    
+    return 0;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -131,6 +149,37 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
 
 #pragma mark - LYPageCollectionViewCellDataSource
 
+- (NSInteger)numberOfSectionInPageCollectionViewCell:(LYPageCollectionViewCell *)cell listView:(UITableView *)listView
+{
+    if ([self.dataSource respondsToSelector:@selector(pageView:numberOfListViewSectionInIndexPath:)])
+    {
+        //完整的indexPath
+        LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        
+        return [self.dataSource pageView:self numberOfListViewSectionInIndexPath:finalIndexPath];
+    }
+    
+    return 0;
+}
+
+- (NSInteger)pageCollectionViewCell:(nonnull LYPageCollectionViewCell *)cell
+                           listView:(nonnull UITableView *)listView
+              numberOfRowsInSection:(nonnull NSIndexPath *)indexPath
+{
+    if ([self.dataSource respondsToSelector:@selector(pageView:numberOfListViewRowsInSection:)])
+    {
+        //完整的indexPath
+        LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.listIndexPath = indexPath;
+        
+        return [self.dataSource pageView:self numberOfListViewRowsInSection:finalIndexPath];
+    }
+    
+    return 0;
+}
+
 - (nonnull UITableViewCell *)pageCollectionViewCell:(nonnull LYPageCollectionViewCell *)cell
                                            listView:(nonnull UITableView *)listView
                               cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
@@ -140,7 +189,7 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
         //完整的indexPath
         LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
         finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
-        finalIndexPath.rowIndexPath = indexPath;
+        finalIndexPath.listIndexPath = indexPath;
         
         UITableViewCell *cell = [self.dataSource pageView:self
                                                  listView:listView

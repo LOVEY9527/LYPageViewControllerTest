@@ -16,7 +16,7 @@
 //模块序号
 @property (strong, nonatomic, nonnull) NSIndexPath *modelIndexPath;
 //列表单元格序号
-@property (strong, nonatomic, nonnull) NSIndexPath *rowIndexPath;
+@property (strong, nonatomic, nonnull) NSIndexPath *listIndexPath;
 
 @end
 
@@ -58,6 +58,30 @@
 /**
  *  @author liyong
  *
+ *  模块区中模块的个数
+ *
+ *  @param pageView  分页视图
+ *  @param indexPath 单元格序号
+ *
+ *  @return 
+ */
+- (NSInteger)pageView:(nonnull LYPageView *)pageView numberOfModelInSection:(nonnull LYIndexPath *)indexPath;
+
+/**
+ *  @author liyong
+ *
+ *  模块中列表的行数
+ *
+ *  @param pageView  分页视图
+ *  @param indexPath 单元格序号
+ *
+ *  @return
+ */
+- (NSInteger)pageView:(nonnull LYPageView *)pageView numberOfListViewRowsInSection:(nonnull LYIndexPath *)indexPath;
+
+/**
+ *  @author liyong
+ *
  *  单元格
  *
  *  @param pageView  分页视图
@@ -72,6 +96,28 @@
 
 @optional
 
+/**
+ *  @author liyong
+ *
+ *  模块区数
+ *
+ *  @param pageView 分页视图
+ *
+ *  @return
+ */
+- (NSInteger)numberOfModelSectionInPageView:(nonnull LYPageView *)pageView;
+
+/**
+ *  @author liyong
+ *
+ *  模块中列表的区数
+ *
+ *  @param pageView  分页视图
+ *  @param indexPath 序号
+ *
+ *  @return
+ */
+- (NSInteger)pageView:(nonnull LYPageView *)pageView numberOfListViewSectionInIndexPath:(nonnull LYIndexPath *)indexPath;
 
 @end
 

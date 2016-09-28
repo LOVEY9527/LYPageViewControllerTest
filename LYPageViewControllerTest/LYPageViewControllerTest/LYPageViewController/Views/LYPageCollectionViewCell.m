@@ -28,7 +28,7 @@
     //设置列表属性
     self.listTableView.dataSource = self;
     self.listTableView.delegate = self;
-    self.listTableView.estimatedRowHeight = 1000;
+//    self.listTableView.estimatedRowHeight = 1000;
     
     self.listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -63,8 +63,27 @@
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if ([self.dataSource respondsToSelector:@selector(numberOfSectionInPageCollectionViewCell:listView:)])
+    {
+        return [self.dataSource numberOfSectionInPageCollectionViewCell:self
+                                                               listView:tableView];
+    }
+    
+    return 0;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if ([self.dataSource respondsToSelector:@selector(pageCollectionViewCell:listView:cellForRowAtIndexPath:)])
+    {
+        NSIndexPath *listIndexPath = [NSIndexPath indexPathForRow:0 inSection:section];
+        return [self.dataSource pageCollectionViewCell:self
+                                              listView:tableView
+                                 numberOfRowsInSection:listIndexPath];
+    }
+    
     return 10;
 }
 
