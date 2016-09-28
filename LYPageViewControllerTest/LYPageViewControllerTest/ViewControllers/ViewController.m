@@ -11,6 +11,7 @@
 #import "LYBeforeViewController.h"
 #import "LYAfterViewController.h"
 #import "LYContentTableViewController.h"
+#import "LYStyleThreeTableViewController.h"
 
 @interface ViewController ()<UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
@@ -67,6 +68,19 @@
     [pageStyleTwoVC.view addSubview:pageVC.view];
     
     [self.navigationController pushViewController:pageStyleTwoVC animated:YES];
+}
+
+/**
+ *  @author liyong
+ *
+ *  样式三
+ *
+ *  @param sender
+ */
+- (IBAction)styleThreeClick:(id)sender
+{
+    LYStyleThreeTableViewController *styleThreeVC = [[LYStyleThreeTableViewController alloc] init];
+    [self.navigationController pushViewController:styleThreeVC animated:YES];
 }
 
 #pragma mark - UIPageViewControllerDataSource

@@ -28,7 +28,7 @@
     //设置列表属性
     self.listTableView.dataSource = self;
     self.listTableView.delegate = self;
-    self.listTableView.estimatedRowHeight = MAXFLOAT;
+    self.listTableView.estimatedRowHeight = 1000;
     
     self.listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }

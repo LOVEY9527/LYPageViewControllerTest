@@ -70,7 +70,6 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
     pageView.dataSource = self;
     pageView.delegate = self;
     [pageView registerNib:[UINib nibWithNibName:NSStringFromClass([LYStyleOneTableViewCell class]) bundle:nil] forListViewCellWithReuseIdentifier:kLYPCVCListTableViewCellReUseId];
-//    [pageView registerClass:[UITableViewCell class] forListViewCellWithReuseIdentifier:kLYPCVCListTableViewCellReUseId];
     [self.view addSubview:pageView];
 }
 
@@ -80,7 +79,6 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
                              listView:(nonnull UITableView *)listView
                 cellForRowAtIndexPath:(nonnull LYIndexPath *)indexPath
 {
-//    UITableViewCell *cell;
     LYStyleOneTableViewCell *cell;
     if (indexPath.modelIndexPath.item < [self.dataSourceArray count])
     {
@@ -91,8 +89,6 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
                                                   forIndexPath:indexPath.rowIndexPath];
             LYStyleOneModel *model = [array objectAtIndex:indexPath.rowIndexPath.row];
             [cell buildCellWithModel:model];
-            
-            NSLog(@"indexPath.rowIndexPath:%@\ncell:%@", indexPath.rowIndexPath, cell);
         }
     }
     
