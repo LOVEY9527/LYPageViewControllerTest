@@ -19,6 +19,8 @@
 		B1057BD71D95007100AC6F51 /* LYPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1057BD61D95007100AC6F51 /* LYPageViewController.m */; };
 		B1057BDA1D95010500AC6F51 /* LYPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1057BD91D95010500AC6F51 /* LYPageView.m */; };
 		B17D293E1D9B6A8300E8EA5A /* LYStyleThreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17D293D1D9B6A8300E8EA5A /* LYStyleThreeTableViewController.m */; };
+		B185DB581D9E01DF00372083 /* LYStyleOneColModelHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B185DB561D9E01DF00372083 /* LYStyleOneColModelHeaderView.m */; };
+		B185DB591D9E01DF00372083 /* LYStyleOneColModelHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B185DB571D9E01DF00372083 /* LYStyleOneColModelHeaderView.xib */; };
 		B19ADFAA1D98CB3B002DC18F /* LYBeforeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B19ADFA81D98CB3B002DC18F /* LYBeforeViewController.m */; };
 		B19ADFAB1D98CB3B002DC18F /* LYBeforeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19ADFA91D98CB3B002DC18F /* LYBeforeViewController.xib */; };
 		B19ADFAF1D98CB6D002DC18F /* LYAfterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B19ADFAD1D98CB6D002DC18F /* LYAfterViewController.m */; };
@@ -62,6 +64,9 @@
 		B1057BD91D95010500AC6F51 /* LYPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPageView.m; sourceTree = "<group>"; };
 		B17D293C1D9B6A8300E8EA5A /* LYStyleThreeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYStyleThreeTableViewController.h; sourceTree = "<group>"; };
 		B17D293D1D9B6A8300E8EA5A /* LYStyleThreeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYStyleThreeTableViewController.m; sourceTree = "<group>"; };
+		B185DB551D9E01DF00372083 /* LYStyleOneColModelHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYStyleOneColModelHeaderView.h; sourceTree = "<group>"; };
+		B185DB561D9E01DF00372083 /* LYStyleOneColModelHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYStyleOneColModelHeaderView.m; sourceTree = "<group>"; };
+		B185DB571D9E01DF00372083 /* LYStyleOneColModelHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYStyleOneColModelHeaderView.xib; sourceTree = "<group>"; };
 		B19ADFA71D98CB3B002DC18F /* LYBeforeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBeforeViewController.h; sourceTree = "<group>"; };
 		B19ADFA81D98CB3B002DC18F /* LYBeforeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBeforeViewController.m; sourceTree = "<group>"; };
 		B19ADFA91D98CB3B002DC18F /* LYBeforeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYBeforeViewController.xib; sourceTree = "<group>"; };
@@ -244,6 +249,9 @@
 				B1A7FF751D9A110B0022C27D /* LYStyleOneTableViewCell.h */,
 				B1A7FF761D9A110B0022C27D /* LYStyleOneTableViewCell.m */,
 				B1A7FF771D9A110B0022C27D /* LYStyleOneTableViewCell.xib */,
+				B185DB551D9E01DF00372083 /* LYStyleOneColModelHeaderView.h */,
+				B185DB561D9E01DF00372083 /* LYStyleOneColModelHeaderView.m */,
+				B185DB571D9E01DF00372083 /* LYStyleOneColModelHeaderView.xib */,
 			);
 			path = StyleOne;
 			sourceTree = "<group>";
@@ -328,6 +336,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B185DB591D9E01DF00372083 /* LYStyleOneColModelHeaderView.xib in Resources */,
 				B19ADFAB1D98CB3B002DC18F /* LYBeforeViewController.xib in Resources */,
 				01334CA91D87ECC2004CA6D2 /* LaunchScreen.storyboard in Resources */,
 				01334CA61D87ECC2004CA6D2 /* Assets.xcassets in Resources */,
@@ -363,6 +372,7 @@
 				B1A7FF7C1D9A62060022C27D /* LYStyleOneModel.m in Sources */,
 				B1057BCD1D94FC9900AC6F51 /* LYPageCollectionViewCell.m in Sources */,
 				01334C9B1D87ECC2004CA6D2 /* main.m in Sources */,
+				B185DB581D9E01DF00372083 /* LYStyleOneColModelHeaderView.m in Sources */,
 				B17D293E1D9B6A8300E8EA5A /* LYStyleThreeTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

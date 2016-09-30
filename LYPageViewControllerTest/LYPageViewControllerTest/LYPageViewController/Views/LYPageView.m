@@ -8,8 +8,10 @@
 
 #import "LYPageView.h"
 #import "LYPageCollectionViewCell.h"
+#import "LYStyleOneColModelHeaderView.h"
 
 NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUseID";
+NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderReUseID";
 
 @implementation LYIndexPath
 
@@ -73,7 +75,66 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     [self addSubview:self.collectionView];
 }
 
+#pragma mark - 视图
+
+/**
+ *  @author liyong
+ *
+ *  自定义横向分页视图的头视图
+ *
+ *  @param pageHeaderView 头视图
+ */
+- (void)customModelPageHeaderWith:(nonnull UIView *)pageHeaderView
+{
+    //设置collectionView的缩进
+    self.collectionView.contentInset = UIEdgeInsetsMake(self.collectionView.contentInset.top,
+                                                        pageHeaderView.frame.size.width,
+                                                        self.collectionView.contentInset.bottom,
+                                                        self.collectionView.contentInset.right);
+    self.collectionView.pagingEnabled = NO;
+    
+    //添加头视图
+    pageHeaderView.frame = CGRectMake(-pageHeaderView.frame.size.width, 0, pageHeaderView.frame.size.width, pageHeaderView.frame.size.height);
+    [self.collectionView addSubview:pageHeaderView];
+}
+
 #pragma mark - 注册
+
+/**
+ *  @author liyong
+ *
+ *  注册分页视图补充视图(头视图/尾视图)
+ *
+ *  @param viewClass   补充视图类型
+ *  @param elementKind 补充视图类型(UICollectionElementKindSectionHeader/UICollectionElementKindSectionFooter)
+ *  @param identifier  重用ID
+ */
+- (void)registerClass:(nullable Class)viewClass
+        forModelPageSupplementaryViewOfKind:(nullable NSString *)elementKind
+        withReuseIdentifier:(nullable NSString *)identifier
+{
+    [self.collectionView registerClass:viewClass
+            forSupplementaryViewOfKind:elementKind
+                   withReuseIdentifier:identifier];
+}
+
+/**
+ *  @author liyong
+ *
+ *  注册分页视图补充视图(头视图/尾视图)
+ *
+ *  @param nib        补充视图的nib
+ *  @param kind       补充视图类型(UICollectionElementKindSectionHeader/UICollectionElementKindSectionFooter)
+ *  @param identifier 重用ID
+ */
+- (void)registerNib:(nullable UINib *)nib
+        forModelPageSupplementaryViewOfKind:(nullable NSString *)kind
+        withReuseIdentifier:(nullable NSString *)identifier
+{
+    [self.collectionView registerNib:nib
+          forSupplementaryViewOfKind:kind
+                 withReuseIdentifier:identifier];
+}
 
 /**
  *  @author liyong
@@ -104,6 +165,13 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     self.reUseObj.listViewCellReUseNib = nib;
     self.reUseObj.listViewCellReuseIdentifier = identifier;
 }
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+//{
+//    return CGSizeMake(100, 0);
+//}
 
 #pragma mark - UICollectionViewDataSource
 
@@ -146,6 +214,20 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     
     return cell;
 }
+
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+//{
+//    if ([kind isEqualToString:UICollectionElementKindSectionHeader])
+//    {
+//        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+//                                                                                  withReuseIdentifier:kLYPVCollectionViewHeaderReUseID
+//                                                                                         forIndexPath:indexPath];
+//        
+//        return headerView;
+//    }
+//    
+//    return nil;
+//}
 
 #pragma mark - LYPageCollectionViewCellDataSource
 

@@ -27,7 +27,44 @@
 //代理
 @property (weak, nonatomic, nullable) id<LYPageViewDelegate> delegate;
 
+#pragma mark - 视图
+
+/**
+ *  @author liyong
+ *
+ *  自定义横向分页视图的头视图
+ *
+ *  @param pageHeaderView 头视图
+ */
+- (void)customModelPageHeaderWith:(nonnull UIView *)pageHeaderView;
+
 #pragma mark - 注册
+
+/**
+ *  @author liyong
+ *
+ *  注册分页视图补充视图(头视图/尾视图)
+ *
+ *  @param viewClass   补充视图类型
+ *  @param elementKind 补充视图类型(UICollectionElementKindSectionHeader/UICollectionElementKindSectionFooter)
+ *  @param identifier  重用ID
+ */
+- (void)registerClass:(nullable Class)viewClass
+        forModelPageSupplementaryViewOfKind:(nullable NSString *)elementKind
+        withReuseIdentifier:(nullable NSString *)identifier;
+
+/**
+ *  @author liyong
+ *
+ *  注册分页视图补充视图(头视图/尾视图)
+ *
+ *  @param nib        补充视图的nib
+ *  @param kind       补充视图类型(UICollectionElementKindSectionHeader/UICollectionElementKindSectionFooter)
+ *  @param identifier 重用ID
+ */
+- (void)registerNib:(nullable UINib *)nib
+        forModelPageSupplementaryViewOfKind:(nullable NSString *)kind
+        withReuseIdentifier:(nullable NSString *)identifier;
 
 /**
  *  @author liyong

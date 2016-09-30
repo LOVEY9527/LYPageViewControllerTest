@@ -96,12 +96,18 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
 {
     self.view.backgroundColor = [UIColor whiteColor];
     
+    //分页视图
     LYPageView *pageView = [[LYPageView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
     pageView.dataSource = self;
     pageView.delegate = self;
 //    [pageView registerNib:[UINib nibWithNibName:NSStringFromClass([LYStyleOneTableViewCell class]) bundle:nil] forListViewCellWithReuseIdentifier:kLYPCVCListTableViewCellReUseId];
     [pageView registerClass:[UITableViewCell class] forListViewCellWithReuseIdentifier:kLYPCVCListTableViewCellReUseId];
     [self.view addSubview:pageView];
+    
+    //分页视图的横向滚动视图的头视图
+    UIView *collectionViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, pageView.frame.size.height)];
+    collectionViewHeaderView.backgroundColor = [UIColor redColor];
+    [pageView customModelPageHeaderWith:collectionViewHeaderView];
 }
 
 #pragma mark - LYPageViewDataSource
