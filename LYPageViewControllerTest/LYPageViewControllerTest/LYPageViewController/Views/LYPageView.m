@@ -242,7 +242,7 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
         return [self.dataSource pageView:self numberOfListViewSectionInIndexPath:finalIndexPath];
     }
     
-    return 0;
+    return 1;
 }
 
 - (NSInteger)pageCollectionViewCell:(nonnull LYPageCollectionViewCell *)cell

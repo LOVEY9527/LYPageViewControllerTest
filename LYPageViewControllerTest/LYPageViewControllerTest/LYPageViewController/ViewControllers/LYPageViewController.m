@@ -105,9 +105,9 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
     [self.view addSubview:pageView];
     
     //分页视图的横向滚动视图的头视图
-    UIView *collectionViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, pageView.frame.size.height)];
-    collectionViewHeaderView.backgroundColor = [UIColor redColor];
-    [pageView customModelPageHeaderWith:collectionViewHeaderView];
+//    UIView *collectionViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, pageView.frame.size.height)];
+//    collectionViewHeaderView.backgroundColor = [UIColor redColor];
+//    [pageView customModelPageHeaderWith:collectionViewHeaderView];
 }
 
 #pragma mark - LYPageViewDataSource

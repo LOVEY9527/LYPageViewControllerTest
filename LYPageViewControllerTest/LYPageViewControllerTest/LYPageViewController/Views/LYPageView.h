@@ -90,6 +90,31 @@
 
 @protocol LYPageViewDataSource <NSObject>
 
+@optional
+
+/**
+ *  @author liyong
+ *
+ *  模块区数
+ *
+ *  @param pageView 分页视图
+ *
+ *  @return
+ */
+- (NSInteger)numberOfModelSectionInPageView:(nonnull LYPageView *)pageView;
+
+/**
+ *  @author liyong
+ *
+ *  模块中列表的区数
+ *
+ *  @param pageView  分页视图
+ *  @param indexPath 序号
+ *
+ *  @return
+ */
+- (NSInteger)pageView:(nonnull LYPageView *)pageView numberOfListViewSectionInIndexPath:(nonnull LYIndexPath *)indexPath;
+
 @required
 
 /**
@@ -130,31 +155,6 @@
 - (nonnull UITableViewCell *)pageView:(nonnull LYPageView *)pageView
                              listView:(nonnull UITableView *)listView
                 cellForRowAtIndexPath:(nonnull LYIndexPath *)indexPath;
-
-@optional
-
-/**
- *  @author liyong
- *
- *  模块区数
- *
- *  @param pageView 分页视图
- *
- *  @return
- */
-- (NSInteger)numberOfModelSectionInPageView:(nonnull LYPageView *)pageView;
-
-/**
- *  @author liyong
- *
- *  模块中列表的区数
- *
- *  @param pageView  分页视图
- *  @param indexPath 序号
- *
- *  @return
- */
-- (NSInteger)pageView:(nonnull LYPageView *)pageView numberOfListViewSectionInIndexPath:(nonnull LYIndexPath *)indexPath;
 
 @end
 

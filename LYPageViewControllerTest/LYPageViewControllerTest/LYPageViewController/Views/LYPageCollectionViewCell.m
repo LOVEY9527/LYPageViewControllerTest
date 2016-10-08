@@ -71,12 +71,12 @@
                                                                listView:tableView];
     }
     
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([self.dataSource respondsToSelector:@selector(pageCollectionViewCell:listView:cellForRowAtIndexPath:)])
+    if ([self.dataSource respondsToSelector:@selector(pageCollectionViewCell:listView:numberOfRowsInSection:)])
     {
         NSIndexPath *listIndexPath = [NSIndexPath indexPathForRow:0 inSection:section];
         return [self.dataSource pageCollectionViewCell:self
@@ -84,7 +84,7 @@
                                  numberOfRowsInSection:listIndexPath];
     }
     
-    return 10;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
