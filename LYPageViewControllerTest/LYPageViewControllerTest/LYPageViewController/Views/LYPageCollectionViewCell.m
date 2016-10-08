@@ -28,6 +28,7 @@
     //设置列表属性
     self.listTableView.dataSource = self;
     self.listTableView.delegate = self;
+//    self.listTableView.sectionHeaderHeight = 100;
 //    self.listTableView.estimatedRowHeight = 1000;
     
     self.listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -59,6 +60,38 @@
 - (void)registerNib:(nullable UINib *)nib forListViewCellWithReuseIdentifier:(nullable NSString *)identifier
 {
     [self.listTableView registerNib:nib forCellReuseIdentifier:identifier];
+}
+
+#pragma mark - 列表属性
+
+- (void)setListRowHeight:(CGFloat)listRowHeight
+{
+    self.listTableView.rowHeight = listRowHeight;
+}
+
+- (void)setListEstimatedRowHeight:(CGFloat)listEstimatedRowHeight
+{
+    self.listTableView.estimatedRowHeight = listEstimatedRowHeight;
+}
+
+- (void)setListSectionHeaderHeight:(CGFloat)listSectionHeaderHeight
+{
+    self.listTableView.sectionHeaderHeight = listSectionHeaderHeight;
+}
+
+- (void)setListEstimatedSectionHeaderHeight:(CGFloat)listEstimatedSectionHeaderHeight
+{
+    self.listTableView.estimatedSectionHeaderHeight = listEstimatedSectionHeaderHeight;
+}
+
+- (void)setListSectionFooterHeight:(CGFloat)listSectionFooterHeight
+{
+    self.listTableView.sectionFooterHeight = listSectionFooterHeight;
+}
+
+- (void)setListEstimatedSectionFooterHeight:(CGFloat)listEstimatedSectionFooterHeight
+{
+    self.listTableView.estimatedSectionFooterHeight = listEstimatedSectionFooterHeight;
 }
 
 #pragma mark - UITableViewDataSource
@@ -112,6 +145,32 @@
                                      listView:tableView
                     didSelectedRowAtIndexPath:indexPath];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if ([self.delegate respondsToSelector:@selector(pageCollectionViewCell:listView:heightForHeaderInSection:)])
+    {
+        NSIndexPath *listIndexPath = [NSIndexPath indexPathForRow:0 inSection:section];
+        return [self.delegate pageCollectionViewCell:self
+                                            listView:tableView
+                            heightForHeaderInSection:listIndexPath];
+    }
+    
+    return self.listSectionHeaderHeight;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if ([self.delegate respondsToSelector:@selector(pageCollectionViewCell:listView:viewForHeaderInSection:)])
+    {
+        NSIndexPath *listIndexPath = [NSIndexPath indexPathForRow:0 inSection:section];
+        return [self.delegate pageCollectionViewCell:self
+                                            listView:tableView
+                              viewForHeaderInSection:listIndexPath];
+    }
+    
+    return nil;
 }
 
 @end

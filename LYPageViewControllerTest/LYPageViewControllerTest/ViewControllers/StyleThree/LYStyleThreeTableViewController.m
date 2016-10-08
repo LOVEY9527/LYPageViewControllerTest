@@ -21,6 +21,7 @@ NSString * const kLYSTTVCTableViewCellReUseId = @"kLYSTTVCTableViewCellReUseId";
     [super viewDidLoad];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kLYSTTVCTableViewCellReUseId];
+    self.tableView.sectionHeaderHeight = 10;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -50,6 +51,20 @@ NSString * const kLYSTTVCTableViewCellReUseId = @"kLYSTTVCTableViewCellReUseId";
     return cell;
 }
 
+#pragma maek - UITableViewDelegate
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 100;
+//}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 10)];
+    headerView.backgroundColor = [UIColor redColor];
+    
+    return headerView;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

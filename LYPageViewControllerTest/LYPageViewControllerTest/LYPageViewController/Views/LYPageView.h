@@ -27,6 +27,21 @@
 //代理
 @property (weak, nonatomic, nullable) id<LYPageViewDelegate> delegate;
 
+//列表单元格高度(所有高低不一致或者不定的时候需要通过代理设定，代理的优先级更高)
+@property (nonatomic) CGFloat pageListRowHeight;             // will return the default value if unset
+//列表单元格估算高度,一般跟约束一起使用(所有高低不一致或者不定的时候需要通过代理设定，代理的优先级更高)
+@property (nonatomic) CGFloat pageListEstimatedRowHeight NS_AVAILABLE_IOS(7_0); // default is 0, which means there is no estimate
+
+//列表区的区头高度(所有高低不一致或者不定的时候需要通过代理设定，代理的优先级更高)
+@property (nonatomic) CGFloat pageListSectionHeaderHeight;   // will return the default value if unset
+//列表区的区头的估算高度,一般跟约束一起使用(所有高低不一致或者不定的时候需要通过代理设定，代理的优先级更高)
+@property (nonatomic) CGFloat pageListEstimatedSectionHeaderHeight NS_AVAILABLE_IOS(7_0); // default is 0, which means there is no estimate
+
+//列表区的区尾高度(所有高低不一致或者不定的时候需要通过代理设定，代理的优先级更高)
+@property (nonatomic) CGFloat pageListSectionFooterHeight;   // will return the default value if unset
+//列表区的区尾的估算高度,一般跟约束一起使用(所有高低不一致或者不定的时候需要通过代理设定，代理的优先级更高)
+@property (nonatomic) CGFloat pageListEstimatedSectionFooterHeight NS_AVAILABLE_IOS(7_0); // default is 0, which means there is no estimate
+
 #pragma mark - 视图
 
 /**
@@ -171,5 +186,31 @@
  *  @param indexPath 被点击的单元格序号
  */
 - (void)pageView:(nonnull LYPageView *)pageView didSelectedAtIndexPath:(nonnull LYIndexPath *)indexPath;
+
+/**
+ *  @author liyong
+ *
+ *  获取列表的区头高度
+ *
+ *  @param pageView  分页视图
+ *  @param indexPath 区头所在的序号
+ *
+ *  @return 区头高度
+ */
+- (CGFloat)pageView:(nonnull LYPageView *)pageView heightForListViewHeaderAtIndexPath:(nonnull LYIndexPath *)indexPath;
+
+/**
+ *  @author liyong
+ *
+ *  获取列表的区头视图
+ *
+ *  @param pageView  分页视图
+ *  @param indexPath 区头所在的序号
+ *
+ *  @return 区头视图
+ */
+- (nullable UIView *)pageView:(nonnull LYPageView *)pageView
+                     listView:(nonnull UITableView *)listView
+                     viewForListViewHeaderAtIndexPath:(nonnull LYIndexPath *)indexPath;
 
 @end

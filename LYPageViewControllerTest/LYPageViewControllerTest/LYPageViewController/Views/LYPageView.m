@@ -302,4 +302,38 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
     }
 }
 
+- (CGFloat)pageCollectionViewCell:(nonnull LYPageCollectionViewCell *)cell
+                         listView:(nonnull UITableView *)listView
+         heightForHeaderInSection:(nonnull NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(pageView:heightForListViewHeaderAtIndexPath:)])
+    {
+        //完整的indexPath
+        LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.listIndexPath = indexPath;
+        
+        return [self.delegate pageView:self heightForListViewHeaderAtIndexPath:finalIndexPath];
+    }
+    
+    return self.pageListSectionHeaderHeight;
+}
+
+- (UIView *)pageCollectionViewCell:(LYPageCollectionViewCell *)cell
+                          listView:(UITableView *)listView
+            viewForHeaderInSection:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(pageView:listView:viewForListViewHeaderAtIndexPath:)])
+    {
+        //完整的indexPath
+        LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.listIndexPath = indexPath;
+        
+        return [self.delegate pageView:self listView:listView viewForListViewHeaderAtIndexPath:finalIndexPath];
+    }
+    
+    return nil;
+}
+
 @end

@@ -219,6 +219,21 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
     NSLog(@"didSelectedAtIndexPath");
 }
 
+- (CGFloat)pageView:(nonnull LYPageView *)pageView heightForListViewHeaderAtIndexPath:(nonnull LYIndexPath *)indexPath
+{
+    return 100;
+}
+
+- (nullable UIView *)pageView:(nonnull LYPageView *)pageView
+                     listView:(nonnull UITableView *)listView
+                     viewForListViewHeaderAtIndexPath:(nonnull LYIndexPath *)indexPath
+{
+    UIView *listHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, listView.frame.size.width, 10)];
+    listHeaderView.backgroundColor = [UIColor blueColor];
+    
+    return listHeaderView;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
