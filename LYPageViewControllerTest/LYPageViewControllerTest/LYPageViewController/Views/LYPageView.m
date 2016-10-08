@@ -69,6 +69,9 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
     self.collectionView.delegate = self;
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([LYPageCollectionViewCell class]) bundle:nil]
           forCellWithReuseIdentifier:kLYPVCollectionViewCellReUseID];
+//    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([LYStyleOneColModelHeaderView class]) bundle:nil]
+//          forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+//                 withReuseIdentifier:kLYPVCollectionViewHeaderReUseID];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.pagingEnabled = YES;
     self.collectionView.showsHorizontalScrollIndicator = NO;
@@ -283,5 +286,20 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
 }
 
 #pragma mark - LYPageCollectionViewCellDelegate
+
+- (void)pageCollectionViewCell:(nonnull LYPageCollectionViewCell *)cell
+                      listView:(nonnull UITableView *)listView
+     didSelectedRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(pageView:didSelectedAtIndexPath:)])
+    {
+        //完整的indexPath
+        LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.listIndexPath = indexPath;
+        
+        [self.delegate pageView:self didSelectedAtIndexPath:finalIndexPath];
+    }
+}
 
 @end

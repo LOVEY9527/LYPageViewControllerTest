@@ -212,6 +212,13 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
     return cell;
 }
 
+#pragma mark - LYPageViewDelegate
+
+- (void)pageView:(nonnull LYPageView *)pageView didSelectedAtIndexPath:(nonnull LYIndexPath *)indexPath
+{
+    NSLog(@"didSelectedAtIndexPath");
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

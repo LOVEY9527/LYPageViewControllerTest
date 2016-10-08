@@ -100,4 +100,18 @@
     return nil;
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(pageCollectionViewCell:listView:didSelectedRowAtIndexPath:)])
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        [self.delegate pageCollectionViewCell:self
+                                     listView:tableView
+                    didSelectedRowAtIndexPath:indexPath];
+    }
+}
+
 @end

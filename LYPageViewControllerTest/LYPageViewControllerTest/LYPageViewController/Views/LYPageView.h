@@ -160,6 +160,16 @@
 
 @protocol LYPageViewDelegate <NSObject>
 
+@optional
 
+/**
+ *  @author liyong
+ *
+ *  点击模块中的单元格
+ *
+ *  @param pageView  分页视图
+ *  @param indexPath 被点击的单元格序号
+ */
+- (void)pageView:(nonnull LYPageView *)pageView didSelectedAtIndexPath:(nonnull LYIndexPath *)indexPath;
 
 @end

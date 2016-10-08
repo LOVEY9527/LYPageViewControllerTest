@@ -106,6 +106,19 @@
 
 @protocol LYPageCollectionViewCellDelegate <NSObject>
 
+@optional
 
+/**
+ *  @author liyong
+ *
+ *  点击单元格
+ *
+ *  @param cell       单元格所在列表的模块单元格
+ *  @param listView   单元格所在的列表
+ *  @param indexPath  被点击的单元格的序号
+ */
+- (void)pageCollectionViewCell:(nonnull LYPageCollectionViewCell *)cell
+                      listView:(nonnull UITableView *)listView
+     didSelectedRowAtIndexPath:(nonnull NSIndexPath *)indexPath;
 
 @end
