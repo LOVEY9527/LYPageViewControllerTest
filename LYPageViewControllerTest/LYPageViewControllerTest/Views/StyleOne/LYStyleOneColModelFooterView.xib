@@ -11,23 +11,18 @@
             <rect key="frame" x="0.0" y="0.0" width="50" height="568"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="header" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O40-Mk-eZV">
-                    <rect key="frame" x="0.0" y="273" width="50" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="4rh-H8-zhI"/>
-                        <constraint firstAttribute="width" constant="50" id="pGh-ZV-uBf"/>
-                    </constraints>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="footer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DhI-cT-Qxh">
+                    <rect key="frame" x="4.5" y="274.5" width="41.5" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.36470588240000001" green="0.80784313730000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="O40-Mk-eZV" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="U4D-1Q-RWc"/>
-                <constraint firstItem="O40-Mk-eZV" firstAttribute="centerX" secondItem="U6b-Vx-4bR" secondAttribute="centerX" id="mfn-1h-GvF"/>
+                <constraint firstItem="DhI-cT-Qxh" firstAttribute="centerX" secondItem="U6b-Vx-4bR" secondAttribute="centerX" id="15G-mE-cKw"/>
+                <constraint firstItem="DhI-cT-Qxh" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="8v8-nE-S9O"/>
             </constraints>
-            <point key="canvasLocation" x="35" y="172"/>
         </collectionReusableView>
     </objects>
 </document>

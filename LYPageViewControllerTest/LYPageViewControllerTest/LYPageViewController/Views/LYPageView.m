@@ -13,7 +13,6 @@ NSString * const UITableViewSectionHeader = @"UITableViewSectionHeader";
 NSString * const UITableViewSectionFooter = @"UITableViewSectionFooter";
 
 NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUseID";
-NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderReUseID";
 
 @implementation LYIndexPath
 
@@ -75,9 +74,6 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
     self.collectionView.delegate = self;
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([LYPageCollectionViewCell class]) bundle:nil]
           forCellWithReuseIdentifier:kLYPVCollectionViewCellReUseID];
-//    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([LYStyleOneColModelHeaderView class]) bundle:nil]
-//          forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-//                 withReuseIdentifier:kLYPVCollectionViewHeaderReUseID];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.pagingEnabled = YES;
     self.collectionView.showsHorizontalScrollIndicator = NO;
@@ -114,35 +110,23 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
  *
  *  注册分页视图补充视图(头视图/尾视图)
  *
- *  @param viewClass   补充视图类型
+ *  @param reUseObj    补充视图重用信息对象
  *  @param elementKind 补充视图类型(UICollectionElementKindSectionHeader/UICollectionElementKindSectionFooter)
- *  @param identifier  重用ID
  */
-- (void)registerClass:(nullable Class)viewClass
-        forModelPageSupplementaryViewOfKind:(nullable NSString *)elementKind
-        withReuseIdentifier:(nullable NSString *)identifier
+- (void)registerObj:(nonnull LYListViewReUseObject *)reUseObj forModelPageSuppleMentaryViewOfKind:(nonnull NSString *)elementKind
 {
-    [self.collectionView registerClass:viewClass
-            forSupplementaryViewOfKind:elementKind
-                   withReuseIdentifier:identifier];
-}
-
-/**
- *  @author liyong
- *
- *  注册分页视图补充视图(头视图/尾视图)
- *
- *  @param nib        补充视图的nib
- *  @param kind       补充视图类型(UICollectionElementKindSectionHeader/UICollectionElementKindSectionFooter)
- *  @param identifier 重用ID
- */
-- (void)registerNib:(nullable UINib *)nib
-        forModelPageSupplementaryViewOfKind:(nullable NSString *)kind
-        withReuseIdentifier:(nullable NSString *)identifier
-{
-    [self.collectionView registerNib:nib
-          forSupplementaryViewOfKind:kind
-                 withReuseIdentifier:identifier];
+    self.collectionView.pagingEnabled = NO;
+    if (reUseObj.listViewReUseNib != nil)
+    {
+        [self.collectionView registerNib:reUseObj.listViewReUseNib
+              forSupplementaryViewOfKind:elementKind
+                     withReuseIdentifier:reUseObj.listViewReuseIdentifier];
+    }else
+    {
+        [self.collectionView registerClass:reUseObj.listViewReUseClass
+                forSupplementaryViewOfKind:elementKind
+                       withReuseIdentifier:reUseObj.listViewReuseIdentifier];
+    }
 }
 
 /**
@@ -178,10 +162,25 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-//{
-//    return CGSizeMake(100, 0);
-//}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    if ([self.delegate respondsToSelector:@selector(pageView:layout:referenceSizeForHeaderInSection:)])
+    {
+        return [self.delegate pageView:self layout:collectionViewLayout referenceSizeForHeaderInSection:section];
+    }
+    
+    return CGSizeZero;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+    if ([self.delegate respondsToSelector:@selector(pageView:layout:referenceSizeForFooterInSection:)])
+    {
+        return [self.delegate pageView:self layout:collectionViewLayout referenceSizeForFooterInSection:section];
+    }
+    
+    return CGSizeZero;
+}
 
 #pragma mark - UICollectionViewDataSource
 
@@ -233,19 +232,23 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
     return cell;
 }
 
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//{
-//    if ([kind isEqualToString:UICollectionElementKindSectionHeader])
-//    {
-//        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
-//                                                                                  withReuseIdentifier:kLYPVCollectionViewHeaderReUseID
-//                                                                                         forIndexPath:indexPath];
-//        
-//        return headerView;
-//    }
-//    
-//    return nil;
-//}
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+           viewForSupplementaryElementOfKind:(NSString *)kind
+                                 atIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(pageView:collectionView:viewForSupplementOfKind:atIndexPath:)])
+    {
+        //完整的indexPath
+        LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
+        finalIndexPath.modelIndexPath = indexPath;
+        
+        return [self.delegate pageView:self
+                              collectionView:collectionView
+                              viewForSupplementOfKind:kind
+                              atIndexPath:finalIndexPath];
+    }
+    return nil;
+}
 
 #pragma mark - LYPageCollectionViewCellDataSource
 

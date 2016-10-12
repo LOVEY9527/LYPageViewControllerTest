@@ -64,26 +64,10 @@ extern NSString * const UITableViewSectionFooter;
  *
  *  注册分页视图补充视图(头视图/尾视图)
  *
- *  @param viewClass   补充视图类型
+ *  @param reUseObj    补充视图重用信息对象
  *  @param elementKind 补充视图类型(UICollectionElementKindSectionHeader/UICollectionElementKindSectionFooter)
- *  @param identifier  重用ID
  */
-- (void)registerClass:(nullable Class)viewClass
-        forModelPageSupplementaryViewOfKind:(nullable NSString *)elementKind
-        withReuseIdentifier:(nullable NSString *)identifier;
-
-/**
- *  @author liyong
- *
- *  注册分页视图补充视图(头视图/尾视图)
- *
- *  @param nib        补充视图的nib
- *  @param kind       补充视图类型(UICollectionElementKindSectionHeader/UICollectionElementKindSectionFooter)
- *  @param identifier 重用ID
- */
-- (void)registerNib:(nullable UINib *)nib
-        forModelPageSupplementaryViewOfKind:(nullable NSString *)kind
-        withReuseIdentifier:(nullable NSString *)identifier;
+- (void)registerObj:(nonnull LYListViewReUseObject *)reUseObj forModelPageSuppleMentaryViewOfKind:(nonnull NSString *)elementKind;
 
 /**
  *  @author liyong
@@ -193,6 +177,36 @@ extern NSString * const UITableViewSectionFooter;
 /**
  *  @author liyong
  *
+ *  分页模块区头size
+ *
+ *  @param pageView             分页视图
+ *  @param collectionViewLayout
+ *  @param section              区头所在的区号
+ *
+ *  @return
+ */
+- (CGSize)pageView:(nonnull LYPageView *)pageView
+          layout:(nonnull UICollectionViewLayout *)collectionViewLayout
+          referenceSizeForHeaderInSection:(NSInteger)section;
+
+/**
+ *  @author liyong
+ *
+ *  分页模块区尾size
+ *
+ *  @param pageView             分页视图
+ *  @param collectionViewLayout
+ *  @param section              区尾所在的区号
+ *
+ *  @return
+ */
+- (CGSize)pageView:(nonnull LYPageView *)pageView
+          layout:(nonnull UICollectionViewLayout *)collectionViewLayout
+          referenceSizeForFooterInSection:(NSInteger)section;
+
+/**
+ *  @author liyong
+ *
  *  获取列表的区头高度
  *
  *  @param pageView  分页视图
@@ -213,6 +227,23 @@ extern NSString * const UITableViewSectionFooter;
  *  @return 区尾的高度
  */
 - (CGFloat)pageView:(nonnull LYPageView *)pageView heightForListViewFooterAtIndexPath:(nonnull LYIndexPath *)indexPath;
+
+/**
+ *  @author liyong
+ *
+ *  获取模块补充视图(头视图/尾视图)
+ *
+ *  @param pageView  分页视图
+ *  @param pageView  模块
+ *  @param kind      补充视图类型(UICollectionElementKindSectionHeader/UICollectionElementKindSectionFooter)
+ *  @param indexPath 补充视图所在的序号
+ *
+ *  @return
+ */
+- (nullable UICollectionReusableView *)pageView:(nonnull LYPageView *)pageView
+                                 collectionView:(nonnull UICollectionView *)collectionView
+                        viewForSupplementOfKind:(nonnull NSString *)kind
+                                    atIndexPath:(nonnull LYIndexPath *)indexPath;
 
 /**
  *  @author liyong

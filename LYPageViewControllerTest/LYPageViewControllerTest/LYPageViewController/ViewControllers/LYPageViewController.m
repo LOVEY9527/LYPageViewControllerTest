@@ -9,13 +9,17 @@
 #import "LYPageViewController.h"
 
 #import "LYPageView.h"
+#import "LYStyleOneColModelHeaderView.h"
+#import "LYStyleOneColModelFooterView.h"
 #import "LYStyleOneTableSectionHeaderView.h"
 #import "LYStyleOneTableSectionFooterView.h"
 #import "LYStyleOneTableViewCell.h"
 
-NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReUseId";
+NSString * const kLYPCVCModelPageSectionHeaderReUseId = @"kLYPCVCModelPageSectionHeaderReUseId";
+NSString * const kLYPCVCModelPageSectionFooterReUseId = @"kLYPCVCModelPageSectionFooterReUseId";
 NSString * const kLYPCVCListTableSectionHeaderReUseId = @"kLYPCVCListTableSectionHeaderReUseId";
 NSString * const kLYPCVCListTableSectionFooterReUseId = @"kLYPCVCListTableSectionFooterReUseId";
+NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReUseId";
 
 @interface LYPageViewController ()<LYPageViewDataSource, LYPageViewDelegate>
 
@@ -104,6 +108,18 @@ NSString * const kLYPCVCListTableSectionFooterReUseId = @"kLYPCVCListTableSectio
     LYPageView *pageView = [[LYPageView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
     pageView.dataSource = self;
     pageView.delegate = self;
+    //注册模块分区头视图
+    LYListViewReUseObject *modelPageHeaderReUseObj = [[LYListViewReUseObject alloc] init];
+    modelPageHeaderReUseObj.listViewReuseIdentifier = kLYPCVCModelPageSectionHeaderReUseId;
+    modelPageHeaderReUseObj.listViewReUseNib = [UINib nibWithNibName:NSStringFromClass([LYStyleOneColModelHeaderView class])
+                                                              bundle:[NSBundle mainBundle]];
+    [pageView registerObj:modelPageHeaderReUseObj forModelPageSuppleMentaryViewOfKind:UICollectionElementKindSectionHeader];
+    //注册模块分区尾视图
+    LYListViewReUseObject *modelPageFooterReUseObj = [[LYListViewReUseObject alloc] init];
+    modelPageFooterReUseObj.listViewReuseIdentifier = kLYPCVCModelPageSectionFooterReUseId;
+    modelPageFooterReUseObj.listViewReUseNib = [UINib nibWithNibName:NSStringFromClass([LYStyleOneColModelFooterView class])
+                                                              bundle:[NSBundle mainBundle]];
+    [pageView registerObj:modelPageFooterReUseObj forModelPageSuppleMentaryViewOfKind:UICollectionElementKindSectionFooter];
     //注册列表区头
     LYListViewReUseObject *listHeaderReUseObj = [[LYListViewReUseObject alloc] init];
     listHeaderReUseObj.listViewReuseIdentifier = kLYPCVCListTableSectionHeaderReUseId;
@@ -240,6 +256,20 @@ NSString * const kLYPCVCListTableSectionFooterReUseId = @"kLYPCVCListTableSectio
     NSLog(@"didSelectedAtIndexPath");
 }
 
+- (CGSize)pageView:(LYPageView *)pageView
+          layout:(UICollectionViewLayout *)collectionViewLayout
+          referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(50, 0);
+}
+
+- (CGSize)pageView:(nonnull LYPageView *)pageView
+          layout:(nonnull UICollectionViewLayout *)collectionViewLayout
+          referenceSizeForFooterInSection:(NSInteger)section
+{
+    return CGSizeMake(50, 0);
+}
+
 - (CGFloat)pageView:(nonnull LYPageView *)pageView heightForListViewHeaderAtIndexPath:(nonnull LYIndexPath *)indexPath
 {
     return 50;
@@ -250,6 +280,25 @@ NSString * const kLYPCVCListTableSectionFooterReUseId = @"kLYPCVCListTableSectio
     return 30;
 }
 
+- (UICollectionReusableView *)pageView:(LYPageView *)pageView
+                        collectionView:(UICollectionView *)collectionView
+               viewForSupplementOfKind:(NSString *)kind
+                           atIndexPath:(LYIndexPath *)indexPath
+{
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader])
+    {
+        return [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                  withReuseIdentifier:kLYPCVCModelPageSectionHeaderReUseId
+                                                         forIndexPath:indexPath.modelIndexPath];
+    }else if ([kind isEqualToString:UICollectionElementKindSectionFooter])
+    {
+        return [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                  withReuseIdentifier:kLYPCVCModelPageSectionFooterReUseId
+                                                         forIndexPath:indexPath.modelIndexPath];
+    }
+    
+    return nil;
+}
 
 - (nullable UIView *)pageView:(nonnull LYPageView *)pageView
                      listView:(nonnull UITableView *)listView
