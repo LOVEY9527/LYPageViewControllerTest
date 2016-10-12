@@ -54,15 +54,23 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
                                    //模块中列表区数
                                    @[
                                        //模块列表中区数的行数
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
                                        @"123"
                                     ]
                                 ],
                                @[
                                    @[
                                        @"123",
+                                       @"123",
+                                       @"123",
                                        @"123"
                                     ],
                                    @[
+                                       @"123",
+                                       @"123",
                                        @"123"
                                     ]
                                 ]
@@ -70,10 +78,11 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
                            @[
                                @[
                                    @[
+                                       @"123",
                                        @"123"
-                                       ]
-                                   ]
-                               ]
+                                    ]
+                                ]
+                            ]
                            ];
     
     self.dataSourceArray = [NSMutableArray arrayWithArray:testArray];
@@ -239,7 +248,7 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
                 {
                     cell = [listView dequeueReusableCellWithIdentifier:kLYPCVCListTableViewCellReUseId
                                                           forIndexPath:indexPath.listIndexPath];                    
-//                    cell.textLabel.text = @"123";
+                    cell.textLabel.text = @"123";
                 }
             }
         }
@@ -268,6 +277,11 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
           referenceSizeForFooterInSection:(NSInteger)section
 {
     return CGSizeMake(50, 0);
+}
+
+- (CGFloat)pageView:(LYPageView *)pageView heightForListViewRowAtIndexPath:(LYIndexPath *)indexPath
+{
+    return 200;
 }
 
 - (CGFloat)pageView:(nonnull LYPageView *)pageView heightForListViewHeaderAtIndexPath:(nonnull LYIndexPath *)indexPath

@@ -207,6 +207,18 @@ extern NSString * const UITableViewSectionFooter;
 /**
  *  @author liyong
  *
+ *  获取列表的单元格高度(高度统一的话建议使用pageListRowHeight)
+ *
+ *  @param pageView  分页视图
+ *  @param indexPath 单元格所在的序号
+ *
+ *  @return 
+ */
+- (CGFloat)pageView:(nonnull LYPageView *)pageView heightForListViewRowAtIndexPath:(nonnull LYIndexPath *)indexPath;
+
+/**
+ *  @author liyong
+ *
  *  获取列表的区头高度
  *
  *  @param pageView  分页视图

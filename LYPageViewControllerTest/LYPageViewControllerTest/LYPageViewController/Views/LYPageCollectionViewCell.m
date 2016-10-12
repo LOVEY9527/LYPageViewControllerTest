@@ -72,32 +72,6 @@
     }
 }
 
-/**
- *  @author liyong
- *
- *  注册列表单元格
- *
- *  @param cellClass  单元格类型
- *  @param identifier 重用ID
- */
-//- (void)registerClass:(nullable Class)cellClass forListViewCellWithReuseIdentifier:(nullable NSString *)identifier
-//{
-//    [self.listTableView registerClass:cellClass forCellReuseIdentifier:identifier];
-//}
-
-/**
- *  @author liyong
- *
- *  注册列表单元格
- *
- *  @param nib        单元格的nib
- *  @param identifier 重用ID
- */
-//- (void)registerNib:(nullable UINib *)nib forListViewCellWithReuseIdentifier:(nullable NSString *)identifier
-//{
-//    [self.listTableView registerNib:nib forCellReuseIdentifier:identifier];
-//}
-
 #pragma mark - 列表属性
 
 - (void)setListRowHeight:(CGFloat)listRowHeight
@@ -181,6 +155,18 @@
                                      listView:tableView
                     didSelectedRowAtIndexPath:indexPath];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(pageCollectionViewCell:listView:heightForRowAtIndexPath:)])
+    {
+        return [self.delegate pageCollectionViewCell:self
+                                            listView:tableView
+                             heightForRowAtIndexPath:indexPath];
+    }
+    
+    return self.listRowHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

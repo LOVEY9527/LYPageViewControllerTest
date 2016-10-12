@@ -320,6 +320,23 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     }
 }
 
+- (CGFloat)pageCollectionViewCell:(LYPageCollectionViewCell *)cell
+                         listView:(UITableView *)listView
+          heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(pageView:heightForListViewRowAtIndexPath:)])
+    {
+        //完整的indexPath
+        LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.listIndexPath = indexPath;
+        
+        return [self.delegate pageView:self heightForListViewRowAtIndexPath:finalIndexPath];
+    }
+    
+    return self.pageListRowHeight;
+}
+
 - (CGFloat)pageCollectionViewCell:(nonnull LYPageCollectionViewCell *)cell
                          listView:(nonnull UITableView *)listView
          heightForHeaderInSection:(nonnull NSIndexPath *)indexPath
