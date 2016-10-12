@@ -8,7 +8,7 @@
 
 #import "LYPageCollectionViewCell.h"
 
-@implementation LYListViewCellReUseObject
+@implementation LYListViewReUseObject
 
 @end
 
@@ -39,15 +39,51 @@
 /**
  *  @author liyong
  *
+ *  注册列表区头或者区尾
+ *
+ *  @param aClass     重用信息对象
+ */
+- (void)registerListViewHeaderFooterViewWithObject:(nullable LYListViewReUseObject *)reUseObj
+{
+    if (reUseObj.listViewReUseNib != nil)
+    {
+        [self.listTableView registerNib:reUseObj.listViewReUseNib forHeaderFooterViewReuseIdentifier:reUseObj.listViewReuseIdentifier];
+    }else
+    {
+        [self.listTableView registerClass:reUseObj.listViewReUseClass forHeaderFooterViewReuseIdentifier:reUseObj.listViewReuseIdentifier];
+    }
+}
+
+/**
+ *  @author liyong
+ *
+ *  注册列表单元格
+ *
+ *  @param reUseObj 重用信息对象
+ */
+- (void)registerListViewCellWithObject:(nullable LYListViewReUseObject *)reUseObj
+{
+    if (reUseObj.listViewReUseNib != nil)
+    {
+        [self.listTableView registerNib:reUseObj.listViewReUseNib forCellReuseIdentifier:reUseObj.listViewReuseIdentifier];
+    }else
+    {
+        [self.listTableView registerClass:reUseObj.listViewReUseClass forCellReuseIdentifier:reUseObj.listViewReuseIdentifier];
+    }
+}
+
+/**
+ *  @author liyong
+ *
  *  注册列表单元格
  *
  *  @param cellClass  单元格类型
  *  @param identifier 重用ID
  */
-- (void)registerClass:(nullable Class)cellClass forListViewCellWithReuseIdentifier:(nullable NSString *)identifier
-{
-    [self.listTableView registerClass:cellClass forCellReuseIdentifier:identifier];
-}
+//- (void)registerClass:(nullable Class)cellClass forListViewCellWithReuseIdentifier:(nullable NSString *)identifier
+//{
+//    [self.listTableView registerClass:cellClass forCellReuseIdentifier:identifier];
+//}
 
 /**
  *  @author liyong
@@ -57,10 +93,10 @@
  *  @param nib        单元格的nib
  *  @param identifier 重用ID
  */
-- (void)registerNib:(nullable UINib *)nib forListViewCellWithReuseIdentifier:(nullable NSString *)identifier
-{
-    [self.listTableView registerNib:nib forCellReuseIdentifier:identifier];
-}
+//- (void)registerNib:(nullable UINib *)nib forListViewCellWithReuseIdentifier:(nullable NSString *)identifier
+//{
+//    [self.listTableView registerNib:nib forCellReuseIdentifier:identifier];
+//}
 
 #pragma mark - 列表属性
 
@@ -160,6 +196,19 @@
     return self.listSectionHeaderHeight;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if ([self.delegate respondsToSelector:@selector(pageCollectionViewCell:listView:heightForFooterInSection:)])
+    {
+        NSIndexPath *listIndexPath = [NSIndexPath indexPathForRow:0 inSection:section];
+        return [self.delegate pageCollectionViewCell:self
+                                            listView:tableView
+                            heightForFooterInSection:listIndexPath];
+    }
+    
+    return self.listSectionFooterHeight;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if ([self.delegate respondsToSelector:@selector(pageCollectionViewCell:listView:viewForHeaderInSection:)])
@@ -168,6 +217,19 @@
         return [self.delegate pageCollectionViewCell:self
                                             listView:tableView
                               viewForHeaderInSection:listIndexPath];
+    }
+    
+    return nil;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if ([self.delegate respondsToSelector:@selector(pageCollectionViewCell:listView:viewForFooterInSection:)])
+    {
+        NSIndexPath *listIndexPath = [NSIndexPath indexPathForRow:0 inSection:section];
+        return [self.delegate pageCollectionViewCell:self
+                                            listView:tableView
+                              viewForFooterInSection:listIndexPath];
     }
     
     return nil;

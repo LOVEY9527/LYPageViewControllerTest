@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LYPageCollectionViewCell.h"
 
 @protocol LYPageViewDataSource;
 @protocol LYPageViewDelegate;
+
+extern NSString * const UITableViewSectionHeader;
+extern NSString * const UITableViewSectionFooter;
 
 @interface LYIndexPath : NSObject
 
@@ -84,22 +88,21 @@
 /**
  *  @author liyong
  *
- *  注册列表单元格
+ *  注册分页视图中列表的区头区尾
  *
- *  @param cellClass  单元格类型
- *  @param identifier 重用ID
+ *  @param listHeaderFooterReUseObj 重用信息对象
+ *  @param kind                     补充视图类型(UITableViewSectionHeader/UITableViewSectionFooter)
  */
-- (void)registerClass:(nullable Class)cellClass forListViewCellWithReuseIdentifier:(nullable NSString *)identifier;
+- (void)registerObj:(nonnull LYListViewReUseObject *)listHeaderFooterReUseObj ForPageViewListSupplementaryViewOfKind:(nonnull NSString *)kind;
 
 /**
  *  @author liyong
  *
  *  注册列表单元格
  *
- *  @param nib        单元格的nib
- *  @param identifier 重用ID
+ *  @param reUseObj 重用信息对象
  */
-- (void)registerNib:(nullable UINib *)nib forListViewCellWithReuseIdentifier:(nullable NSString *)identifier;
+- (void)registerListViewCellWith:(nonnull LYListViewReUseObject *)reUseObj;
 
 @end
 
@@ -202,9 +205,22 @@
 /**
  *  @author liyong
  *
+ *  获取列表区尾的高度
+ *
+ *  @param pageView  分页视图
+ *  @param indexPath 区尾所在的序号
+ *
+ *  @return 区尾的高度
+ */
+- (CGFloat)pageView:(nonnull LYPageView *)pageView heightForListViewFooterAtIndexPath:(nonnull LYIndexPath *)indexPath;
+
+/**
+ *  @author liyong
+ *
  *  获取列表的区头视图
  *
  *  @param pageView  分页视图
+ *  @param listView  区尾所在的列表
  *  @param indexPath 区头所在的序号
  *
  *  @return 区头视图
@@ -212,5 +228,20 @@
 - (nullable UIView *)pageView:(nonnull LYPageView *)pageView
                      listView:(nonnull UITableView *)listView
                      viewForListViewHeaderAtIndexPath:(nonnull LYIndexPath *)indexPath;
+
+/**
+ *  @author liyong
+ *
+ *  获取列表区尾视图
+ *
+ *  @param pageView  分页视图
+ *  @param listView  区尾所在的列表
+ *  @param indexPath 区尾所在的序号
+ *
+ *  @return 区尾视图
+ */
+- (nullable UIView *)pageView:(nonnull LYPageView *)pageView
+                     listView:(nonnull UITableView *)listView
+                     viewForListViewFooterAtIndexPath:(nonnull LYIndexPath *)indexPath;
 
 @end

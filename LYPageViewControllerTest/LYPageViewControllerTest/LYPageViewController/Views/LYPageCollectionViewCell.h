@@ -11,14 +11,14 @@
 @protocol LYPageCollectionViewCellDataSource;
 @protocol LYPageCollectionViewCellDelegate;
 
-@interface LYListViewCellReUseObject : NSObject
+@interface LYListViewReUseObject : NSObject
 
-//列表重用的单元格类
-@property (strong, nonatomic, nullable) Class listViewCellReUseClass;
-//列表重用的单元格nib
-@property (strong, nonatomic, nullable) UINib *listViewCellReUseNib;
+//列表重用的视图类
+@property (strong, nonatomic, nullable) Class listViewReUseClass;
+//列表重用的nib
+@property (strong, nonatomic, nullable) UINib *listViewReUseNib;
 //列表重用ID
-@property (copy, nonatomic, nonnull) NSString *listViewCellReuseIdentifier;
+@property (copy, nonatomic, nonnull) NSString *listViewReuseIdentifier;
 
 @end
 
@@ -49,22 +49,20 @@
 /**
  *  @author liyong
  *
- *  注册列表单元格
+ *  注册列表区头或者区尾
  *
- *  @param cellClass  单元格类型
- *  @param identifier 重用ID
+ *  @param aClass     重用信息对象
  */
-- (void)registerClass:(nullable Class)cellClass forListViewCellWithReuseIdentifier:(nullable NSString *)identifier;
+- (void)registerListViewHeaderFooterViewWithObject:(nullable LYListViewReUseObject *)reUseObj;
 
 /**
  *  @author liyong
  *
  *  注册列表单元格
  *
- *  @param nib        单元格的nib
- *  @param identifier 重用ID
+ *  @param reUseObj 重用信息对象
  */
-- (void)registerNib:(nullable UINib *)nib forListViewCellWithReuseIdentifier:(nullable NSString *)identifier;
+- (void)registerListViewCellWithObject:(nullable LYListViewReUseObject *)reUseObj;
 
 @end
 
@@ -256,8 +254,8 @@ estimatedHeightForFooterInSection:(nonnull NSIndexPath *)indexPath NS_AVAILABLE_
  *
  *  @return 区尾的视图
  */
-- (CGFloat)pageCollectionViewCell:(nonnull LYPageCollectionViewCell *)cell
-                         listView:(nonnull UITableView *)listView
-           viewForFooterInSection:(nonnull NSIndexPath *)indexPath;   // custom view for footer. will be adjusted to default or specified footer height
+- (nullable UIView *)pageCollectionViewCell:(nonnull LYPageCollectionViewCell *)cell
+                                   listView:(nonnull UITableView *)listView
+                     viewForFooterInSection:(nonnull NSIndexPath *)indexPath;   // custom view for footer. will be adjusted to default or specified footer height
 
 @end

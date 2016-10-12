@@ -9,9 +9,13 @@
 #import "LYPageViewController.h"
 
 #import "LYPageView.h"
+#import "LYStyleOneTableSectionHeaderView.h"
+#import "LYStyleOneTableSectionFooterView.h"
 #import "LYStyleOneTableViewCell.h"
 
 NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReUseId";
+NSString * const kLYPCVCListTableSectionHeaderReUseId = @"kLYPCVCListTableSectionHeaderReUseId";
+NSString * const kLYPCVCListTableSectionFooterReUseId = @"kLYPCVCListTableSectionFooterReUseId";
 
 @interface LYPageViewController ()<LYPageViewDataSource, LYPageViewDelegate>
 
@@ -100,8 +104,25 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
     LYPageView *pageView = [[LYPageView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
     pageView.dataSource = self;
     pageView.delegate = self;
-//    [pageView registerNib:[UINib nibWithNibName:NSStringFromClass([LYStyleOneTableViewCell class]) bundle:nil] forListViewCellWithReuseIdentifier:kLYPCVCListTableViewCellReUseId];
-    [pageView registerClass:[UITableViewCell class] forListViewCellWithReuseIdentifier:kLYPCVCListTableViewCellReUseId];
+    //注册列表区头
+    LYListViewReUseObject *listHeaderReUseObj = [[LYListViewReUseObject alloc] init];
+    listHeaderReUseObj.listViewReuseIdentifier = kLYPCVCListTableSectionHeaderReUseId;
+    listHeaderReUseObj.listViewReUseNib = [UINib nibWithNibName:NSStringFromClass([LYStyleOneTableSectionHeaderView class])
+                                                         bundle:[NSBundle mainBundle]];
+    [pageView registerObj:listHeaderReUseObj ForPageViewListSupplementaryViewOfKind:UITableViewSectionHeader];
+    //注册列表区尾
+    LYListViewReUseObject *listFooterReUseObj = [[LYListViewReUseObject alloc] init];
+    listFooterReUseObj.listViewReuseIdentifier = kLYPCVCListTableSectionFooterReUseId;
+    listFooterReUseObj.listViewReUseNib = [UINib nibWithNibName:NSStringFromClass([LYStyleOneTableSectionFooterView class])
+                                                         bundle:[NSBundle mainBundle]];
+    [pageView registerObj:listFooterReUseObj ForPageViewListSupplementaryViewOfKind:UITableViewSectionFooter];
+    //注册列表单元格
+    LYListViewReUseObject *listCellReUseObj = [[LYListViewReUseObject alloc] init];
+    listCellReUseObj.listViewReuseIdentifier = kLYPCVCListTableViewCellReUseId;
+    listCellReUseObj.listViewReUseClass = [UITableViewCell class];
+//    listCellReUseObj.listViewReUseNib = [UINib nibWithNibName:NSStringFromClass([LYStyleOneTableViewCell class])
+//                                                       bundle:[NSBundle mainBundle]];
+    [pageView registerListViewCellWith:listCellReUseObj];
     [self.view addSubview:pageView];
     
     //分页视图的横向滚动视图的头视图
@@ -202,7 +223,7 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
                 {
                     cell = [listView dequeueReusableCellWithIdentifier:kLYPCVCListTableViewCellReUseId
                                                           forIndexPath:indexPath.listIndexPath];                    
-                    cell.textLabel.text = @"123";
+//                    cell.textLabel.text = @"123";
                 }
             }
         }
@@ -221,17 +242,31 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
 
 - (CGFloat)pageView:(nonnull LYPageView *)pageView heightForListViewHeaderAtIndexPath:(nonnull LYIndexPath *)indexPath
 {
-    return 100;
+    return 50;
 }
+
+- (CGFloat)pageView:(nonnull LYPageView *)pageView heightForListViewFooterAtIndexPath:(nonnull LYIndexPath *)indexPath
+{
+    return 30;
+}
+
 
 - (nullable UIView *)pageView:(nonnull LYPageView *)pageView
                      listView:(nonnull UITableView *)listView
                      viewForListViewHeaderAtIndexPath:(nonnull LYIndexPath *)indexPath
 {
-    UIView *listHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, listView.frame.size.width, 10)];
-    listHeaderView.backgroundColor = [UIColor blueColor];
+    UITableViewHeaderFooterView *listHeaderView = [listView dequeueReusableHeaderFooterViewWithIdentifier:kLYPCVCListTableSectionHeaderReUseId];
     
     return listHeaderView;
+}
+
+- (nullable UIView *)pageView:(nonnull LYPageView *)pageView
+                     listView:(nonnull UITableView *)listView
+                     viewForListViewFooterAtIndexPath:(nonnull LYIndexPath *)indexPath
+{
+    UITableViewHeaderFooterView *listFooterView = [listView dequeueReusableHeaderFooterViewWithIdentifier:kLYPCVCListTableSectionFooterReUseId];
+    
+    return listFooterView;
 }
 
 - (void)didReceiveMemoryWarning {

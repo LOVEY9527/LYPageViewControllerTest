@@ -29,6 +29,10 @@
 		B1A7FF781D9A110B0022C27D /* LYStyleOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A7FF761D9A110B0022C27D /* LYStyleOneTableViewCell.m */; };
 		B1A7FF791D9A110B0022C27D /* LYStyleOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1A7FF771D9A110B0022C27D /* LYStyleOneTableViewCell.xib */; };
 		B1A7FF7C1D9A62060022C27D /* LYStyleOneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A7FF7B1D9A62060022C27D /* LYStyleOneModel.m */; };
+		B1EB34D51DAC909B00F338F8 /* LYStyleOneTableSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1EB34D41DAC909B00F338F8 /* LYStyleOneTableSectionHeaderView.m */; };
+		B1EB34D71DAC90C400F338F8 /* LYStyleOneTableSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EB34D61DAC90C400F338F8 /* LYStyleOneTableSectionHeaderView.xib */; };
+		B1EB34E31DACD8E700F338F8 /* LYStyleOneTableSectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1EB34E21DACD8E700F338F8 /* LYStyleOneTableSectionFooterView.m */; };
+		B1EB34E51DACD8F100F338F8 /* LYStyleOneTableSectionFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EB34E41DACD8F100F338F8 /* LYStyleOneTableSectionFooterView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +84,12 @@
 		B1A7FF771D9A110B0022C27D /* LYStyleOneTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYStyleOneTableViewCell.xib; sourceTree = "<group>"; };
 		B1A7FF7A1D9A62060022C27D /* LYStyleOneModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYStyleOneModel.h; sourceTree = "<group>"; };
 		B1A7FF7B1D9A62060022C27D /* LYStyleOneModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYStyleOneModel.m; sourceTree = "<group>"; };
+		B1EB34D31DAC909B00F338F8 /* LYStyleOneTableSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYStyleOneTableSectionHeaderView.h; sourceTree = "<group>"; };
+		B1EB34D41DAC909B00F338F8 /* LYStyleOneTableSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYStyleOneTableSectionHeaderView.m; sourceTree = "<group>"; };
+		B1EB34D61DAC90C400F338F8 /* LYStyleOneTableSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYStyleOneTableSectionHeaderView.xib; sourceTree = "<group>"; };
+		B1EB34E11DACD8E700F338F8 /* LYStyleOneTableSectionFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYStyleOneTableSectionFooterView.h; sourceTree = "<group>"; };
+		B1EB34E21DACD8E700F338F8 /* LYStyleOneTableSectionFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYStyleOneTableSectionFooterView.m; sourceTree = "<group>"; };
+		B1EB34E41DACD8F100F338F8 /* LYStyleOneTableSectionFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYStyleOneTableSectionFooterView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +256,12 @@
 		B1A7FF741D9A10ED0022C27D /* StyleOne */ = {
 			isa = PBXGroup;
 			children = (
+				B1EB34D31DAC909B00F338F8 /* LYStyleOneTableSectionHeaderView.h */,
+				B1EB34D41DAC909B00F338F8 /* LYStyleOneTableSectionHeaderView.m */,
+				B1EB34D61DAC90C400F338F8 /* LYStyleOneTableSectionHeaderView.xib */,
+				B1EB34E11DACD8E700F338F8 /* LYStyleOneTableSectionFooterView.h */,
+				B1EB34E21DACD8E700F338F8 /* LYStyleOneTableSectionFooterView.m */,
+				B1EB34E41DACD8F100F338F8 /* LYStyleOneTableSectionFooterView.xib */,
 				B1A7FF751D9A110B0022C27D /* LYStyleOneTableViewCell.h */,
 				B1A7FF761D9A110B0022C27D /* LYStyleOneTableViewCell.m */,
 				B1A7FF771D9A110B0022C27D /* LYStyleOneTableViewCell.xib */,
@@ -336,11 +352,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1EB34E51DACD8F100F338F8 /* LYStyleOneTableSectionFooterView.xib in Resources */,
 				B185DB591D9E01DF00372083 /* LYStyleOneColModelHeaderView.xib in Resources */,
 				B19ADFAB1D98CB3B002DC18F /* LYBeforeViewController.xib in Resources */,
 				01334CA91D87ECC2004CA6D2 /* LaunchScreen.storyboard in Resources */,
 				01334CA61D87ECC2004CA6D2 /* Assets.xcassets in Resources */,
 				B19ADFB01D98CB6D002DC18F /* LYAfterViewController.xib in Resources */,
+				B1EB34D71DAC90C400F338F8 /* LYStyleOneTableSectionHeaderView.xib in Resources */,
 				B1A7FF791D9A110B0022C27D /* LYStyleOneTableViewCell.xib in Resources */,
 				B1057BCE1D94FC9900AC6F51 /* LYPageCollectionViewCell.xib in Resources */,
 				01334CA41D87ECC2004CA6D2 /* Main.storyboard in Resources */,
@@ -363,6 +381,7 @@
 			files = (
 				B19ADFB31D98F11F002DC18F /* LYContentTableViewController.m in Sources */,
 				B1057BD41D94FFE200AC6F51 /* ViewController.m in Sources */,
+				B1EB34D51DAC909B00F338F8 /* LYStyleOneTableSectionHeaderView.m in Sources */,
 				B1057BD71D95007100AC6F51 /* LYPageViewController.m in Sources */,
 				B19ADFAF1D98CB6D002DC18F /* LYAfterViewController.m in Sources */,
 				B19ADFAA1D98CB3B002DC18F /* LYBeforeViewController.m in Sources */,
@@ -370,6 +389,7 @@
 				B1057BDA1D95010500AC6F51 /* LYPageView.m in Sources */,
 				01334C9E1D87ECC2004CA6D2 /* AppDelegate.m in Sources */,
 				B1A7FF7C1D9A62060022C27D /* LYStyleOneModel.m in Sources */,
+				B1EB34E31DACD8E700F338F8 /* LYStyleOneTableSectionFooterView.m in Sources */,
 				B1057BCD1D94FC9900AC6F51 /* LYPageCollectionViewCell.m in Sources */,
 				01334C9B1D87ECC2004CA6D2 /* main.m in Sources */,
 				B185DB581D9E01DF00372083 /* LYStyleOneColModelHeaderView.m in Sources */,

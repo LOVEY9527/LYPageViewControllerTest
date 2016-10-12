@@ -7,8 +7,10 @@
 //
 
 #import "LYPageView.h"
-#import "LYPageCollectionViewCell.h"
 #import "LYStyleOneColModelHeaderView.h"
+
+NSString * const UITableViewSectionHeader = @"UITableViewSectionHeader";
+NSString * const UITableViewSectionFooter = @"UITableViewSectionFooter";
 
 NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUseID";
 NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderReUseID";
@@ -19,8 +21,12 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
 
 @interface LYPageView ()<UICollectionViewDataSource, UICollectionViewDelegate, LYPageCollectionViewCellDataSource, LYPageCollectionViewCellDelegate>
 
-//列表重用信息对象
-@property (strong, nonatomic, nonnull) LYListViewCellReUseObject *reUseObj;
+//列表单元格重用信息对象
+@property (strong, nonatomic, nonnull) LYListViewReUseObject *listCellReUseObj;
+//列表区头视图重用信息对象
+@property (strong, nonatomic, nonnull) LYListViewReUseObject *listHeaderReUseObj;
+//列表区尾视图重用信息对象
+@property (strong, nonatomic, nonnull) LYListViewReUseObject *listFooterReUseObj;
 
 //横向滑动的视图
 @property (strong, nonatomic) UICollectionView *collectionView;
@@ -142,16 +148,20 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
 /**
  *  @author liyong
  *
- *  注册列表单元格
+ *  注册分页视图中列表的区头区尾
  *
- *  @param cellClass  单元格类型
- *  @param identifier 重用ID
+ *  @param listHeaderFooterReUseObj 重用信息对象
+ *  @param kind                     补充视图类型(UITableViewSectionHeader/UITableViewSectionFooter)
  */
-- (void)registerClass:(nullable Class)cellClass forListViewCellWithReuseIdentifier:(nullable NSString *)identifier
+- (void)registerObj:(nonnull LYListViewReUseObject *)listHeaderFooterReUseObj ForPageViewListSupplementaryViewOfKind:(nonnull NSString *)kind
 {
-    self.reUseObj = [[LYListViewCellReUseObject alloc] init];
-    self.reUseObj.listViewCellReUseClass = cellClass;
-    self.reUseObj.listViewCellReuseIdentifier = identifier;
+    if ([kind isEqualToString:UITableViewSectionHeader])
+    {
+        self.listHeaderReUseObj = listHeaderFooterReUseObj;
+    }else if ([kind isEqualToString:UITableViewSectionFooter])
+    {
+        self.listFooterReUseObj = listHeaderFooterReUseObj;
+    }
 }
 
 /**
@@ -159,14 +169,11 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
  *
  *  注册列表单元格
  *
- *  @param nib        单元格的nib
- *  @param identifier 重用ID
+ *  @param reUseObj 重用信息对象
  */
-- (void)registerNib:(nullable UINib *)nib forListViewCellWithReuseIdentifier:(nullable NSString *)identifier
+- (void)registerListViewCellWith:(nonnull LYListViewReUseObject *)reUseObj
 {
-    self.reUseObj = [[LYListViewCellReUseObject alloc] init];
-    self.reUseObj.listViewCellReUseNib = nib;
-    self.reUseObj.listViewCellReuseIdentifier = identifier;
+    self.listCellReUseObj = reUseObj;
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -207,12 +214,20 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
                                                                                forIndexPath:indexPath];
     cell.dataSource = self;
     cell.delegate = self;
-    if (self.reUseObj.listViewCellReUseNib != nil)
+    if (self.listHeaderReUseObj != nil)
     {
-        [cell registerNib:self.reUseObj.listViewCellReUseNib forListViewCellWithReuseIdentifier:self.reUseObj.listViewCellReuseIdentifier];
-    }else
+        //注册列表区头视图
+        [cell registerListViewHeaderFooterViewWithObject:self.listHeaderReUseObj];
+    }
+    if (self.listFooterReUseObj != nil)
     {
-        [cell registerClass:self.reUseObj.listViewCellReUseClass forListViewCellWithReuseIdentifier:self.reUseObj.listViewCellReuseIdentifier];
+        //注册列表区尾视图
+        [cell registerListViewHeaderFooterViewWithObject:self.listFooterReUseObj];
+    }
+    if (self.listCellReUseObj != nil)
+    {
+        //注册列表单元格视图
+        [cell registerListViewCellWithObject:self.listCellReUseObj];
     }
     
     return cell;
@@ -319,6 +334,23 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
     return self.pageListSectionHeaderHeight;
 }
 
+- (CGFloat)pageCollectionViewCell:(nonnull LYPageCollectionViewCell *)cell
+                         listView:(nonnull UITableView *)listView
+         heightForFooterInSection:(nonnull NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(pageView:heightForListViewFooterAtIndexPath:)])
+    {
+        //完整的indexPath
+        LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.listIndexPath = indexPath;
+        
+        return [self.delegate pageView:self heightForListViewFooterAtIndexPath:finalIndexPath];
+    }
+    
+    return self.pageListSectionFooterHeight;
+}
+
 - (UIView *)pageCollectionViewCell:(LYPageCollectionViewCell *)cell
                           listView:(UITableView *)listView
             viewForHeaderInSection:(NSIndexPath *)indexPath
@@ -331,6 +363,23 @@ NSString * const kLYPVCollectionViewHeaderReUseID = @"kLYPVCollectionViewHeaderR
         finalIndexPath.listIndexPath = indexPath;
         
         return [self.delegate pageView:self listView:listView viewForListViewHeaderAtIndexPath:finalIndexPath];
+    }
+    
+    return nil;
+}
+
+- (UIView *)pageCollectionViewCell:(LYPageCollectionViewCell *)cell
+                          listView:(UITableView *)listView
+            viewForFooterInSection:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(pageView:listView:viewForListViewFooterAtIndexPath:)])
+    {
+        //完整的indexPath
+        LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.listIndexPath = indexPath;
+        
+        return [self.delegate pageView:self listView:listView viewForListViewFooterAtIndexPath:finalIndexPath];
     }
     
     return nil;
