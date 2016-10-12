@@ -23,7 +23,7 @@
 
 - (void)awakeFromNib
 {
-    [super awakeFromNib];    
+    [super awakeFromNib];
     
     //设置列表属性
     self.listTableView.dataSource = self;
@@ -32,6 +32,17 @@
 //    self.listTableView.estimatedRowHeight = 1000;
     
     self.listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+/**
+ *  @author liyong
+ *
+ *  配置模块
+ */
+- (void)configModelColCell
+{
+    [self.listTableView reloadData];
+//    [self.listTableView setContentOffset:CGPointMake(0, 0) animated:NO];
 }
 
 #pragma mark - 注册

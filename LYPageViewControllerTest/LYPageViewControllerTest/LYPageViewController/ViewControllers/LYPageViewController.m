@@ -47,13 +47,22 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
 - (void)buildData
 {
     NSArray *testArray = @[
-                           //模块区数
+                           //第一区模块
                            @[
-                               //模块区中模块数
+                               //第一区第一模块
                                @[
-                                   //模块中列表区数
+                                   //第一区第一模块的列表第一区
                                    @[
-                                       //模块列表中区数的行数
+                                       @"1",
+                                       @"12",
+                                       @"123",
+                                       @"1234",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
                                        @"123",
                                        @"123",
                                        @"123",
@@ -61,14 +70,58 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
                                        @"123"
                                     ]
                                 ],
+                               //第一区第二模块
                                @[
+                                   //第一区第二模块的列表的第一区
                                    @[
+                                       @"1",
+                                       @"12",
+                                       @"123",
+                                       @"123",
+                                       @"123",
                                        @"123",
                                        @"123",
                                        @"123",
                                        @"123"
                                     ],
+                                   //第一区第二模块的列表的第二区数
                                    @[
+                                       @"1",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123"
+                                    ]
+                                ]
+                            ],
+                           //第二区模块
+                           @[
+                               //第二区第一模块
+                               @[
+                                   //第二区第一模块的列表第一区
+                                   @[
+                                       @"1",
+                                       @"12",
+                                       @"123",
+                                       @"1234",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
                                        @"123",
                                        @"123",
                                        @"123"
@@ -78,11 +131,72 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
                            @[
                                @[
                                    @[
+                                       @"1",
+                                       @"12",
+                                       @"123",
+                                       @"1234",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
                                        @"123",
                                        @"123"
-                                    ]
-                                ]
-                            ]
+                                       ]
+                                   ]
+                               ],
+                           @[
+                               @[
+                                   @[
+                                       @"1",
+                                       @"12",
+                                       @"123",
+                                       @"1234",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123"
+                                       ]
+                                   ]
+                               ],
+                           @[
+                               @[
+                                   @[
+                                       @"1",
+                                       @"12",
+                                       @"123",
+                                       @"1234",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123",
+                                       @"123"
+                                       ]
+                                   ]
+                               ]
                            ];
     
     self.dataSourceArray = [NSMutableArray arrayWithArray:testArray];
@@ -118,17 +232,17 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
     pageView.dataSource = self;
     pageView.delegate = self;
     //注册模块分区头视图
-    LYListViewReUseObject *modelPageHeaderReUseObj = [[LYListViewReUseObject alloc] init];
-    modelPageHeaderReUseObj.listViewReuseIdentifier = kLYPCVCModelPageSectionHeaderReUseId;
-    modelPageHeaderReUseObj.listViewReUseNib = [UINib nibWithNibName:NSStringFromClass([LYStyleOneColModelHeaderView class])
-                                                              bundle:[NSBundle mainBundle]];
-    [pageView registerObj:modelPageHeaderReUseObj forModelPageSuppleMentaryViewOfKind:UICollectionElementKindSectionHeader];
+//    LYListViewReUseObject *modelPageHeaderReUseObj = [[LYListViewReUseObject alloc] init];
+//    modelPageHeaderReUseObj.listViewReuseIdentifier = kLYPCVCModelPageSectionHeaderReUseId;
+//    modelPageHeaderReUseObj.listViewReUseNib = [UINib nibWithNibName:NSStringFromClass([LYStyleOneColModelHeaderView class])
+//                                                              bundle:[NSBundle mainBundle]];
+//    [pageView registerObj:modelPageHeaderReUseObj forModelPageSuppleMentaryViewOfKind:UICollectionElementKindSectionHeader];
     //注册模块分区尾视图
-    LYListViewReUseObject *modelPageFooterReUseObj = [[LYListViewReUseObject alloc] init];
-    modelPageFooterReUseObj.listViewReuseIdentifier = kLYPCVCModelPageSectionFooterReUseId;
-    modelPageFooterReUseObj.listViewReUseNib = [UINib nibWithNibName:NSStringFromClass([LYStyleOneColModelFooterView class])
-                                                              bundle:[NSBundle mainBundle]];
-    [pageView registerObj:modelPageFooterReUseObj forModelPageSuppleMentaryViewOfKind:UICollectionElementKindSectionFooter];
+//    LYListViewReUseObject *modelPageFooterReUseObj = [[LYListViewReUseObject alloc] init];
+//    modelPageFooterReUseObj.listViewReuseIdentifier = kLYPCVCModelPageSectionFooterReUseId;
+//    modelPageFooterReUseObj.listViewReUseNib = [UINib nibWithNibName:NSStringFromClass([LYStyleOneColModelFooterView class])
+//                                                              bundle:[NSBundle mainBundle]];
+//    [pageView registerObj:modelPageFooterReUseObj forModelPageSuppleMentaryViewOfKind:UICollectionElementKindSectionFooter];
     //注册列表区头
     LYListViewReUseObject *listHeaderReUseObj = [[LYListViewReUseObject alloc] init];
     listHeaderReUseObj.listViewReuseIdentifier = kLYPCVCListTableSectionHeaderReUseId;
@@ -265,23 +379,23 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
     NSLog(@"didSelectedAtIndexPath");
 }
 
-- (CGSize)pageView:(LYPageView *)pageView
-          layout:(UICollectionViewLayout *)collectionViewLayout
-          referenceSizeForHeaderInSection:(NSInteger)section
-{
-    return CGSizeMake(50, 0);
-}
+//- (CGSize)pageView:(LYPageView *)pageView
+//          layout:(UICollectionViewLayout *)collectionViewLayout
+//          referenceSizeForHeaderInSection:(NSInteger)section
+//{
+//    return CGSizeMake(50, 0);
+//}
 
-- (CGSize)pageView:(nonnull LYPageView *)pageView
-          layout:(nonnull UICollectionViewLayout *)collectionViewLayout
-          referenceSizeForFooterInSection:(NSInteger)section
-{
-    return CGSizeMake(50, 0);
-}
+//- (CGSize)pageView:(nonnull LYPageView *)pageView
+//          layout:(nonnull UICollectionViewLayout *)collectionViewLayout
+//          referenceSizeForFooterInSection:(NSInteger)section
+//{
+//    return CGSizeMake(50, 0);
+//}
 
 - (CGFloat)pageView:(LYPageView *)pageView heightForListViewRowAtIndexPath:(LYIndexPath *)indexPath
 {
-    return 200;
+    return 50;
 }
 
 - (CGFloat)pageView:(nonnull LYPageView *)pageView heightForListViewHeaderAtIndexPath:(nonnull LYIndexPath *)indexPath
@@ -294,25 +408,25 @@ NSString * const kLYPCVCListTableViewCellReUseId = @"kLYPCVCListTableViewCellReU
     return 30;
 }
 
-- (UICollectionReusableView *)pageView:(LYPageView *)pageView
-                        collectionView:(UICollectionView *)collectionView
-               viewForSupplementOfKind:(NSString *)kind
-                           atIndexPath:(LYIndexPath *)indexPath
-{
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader])
-    {
-        return [collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                  withReuseIdentifier:kLYPCVCModelPageSectionHeaderReUseId
-                                                         forIndexPath:indexPath.modelIndexPath];
-    }else if ([kind isEqualToString:UICollectionElementKindSectionFooter])
-    {
-        return [collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                  withReuseIdentifier:kLYPCVCModelPageSectionFooterReUseId
-                                                         forIndexPath:indexPath.modelIndexPath];
-    }
-    
-    return nil;
-}
+//- (UICollectionReusableView *)pageView:(LYPageView *)pageView
+//                        collectionView:(UICollectionView *)collectionView
+//               viewForSupplementOfKind:(NSString *)kind
+//                           atIndexPath:(LYIndexPath *)indexPath
+//{
+//    if ([kind isEqualToString:UICollectionElementKindSectionHeader])
+//    {
+//        return [collectionView dequeueReusableSupplementaryViewOfKind:kind
+//                                                  withReuseIdentifier:kLYPCVCModelPageSectionHeaderReUseId
+//                                                         forIndexPath:indexPath.modelIndexPath];
+//    }else if ([kind isEqualToString:UICollectionElementKindSectionFooter])
+//    {
+//        return [collectionView dequeueReusableSupplementaryViewOfKind:kind
+//                                                  withReuseIdentifier:kLYPCVCModelPageSectionFooterReUseId
+//                                                         forIndexPath:indexPath.modelIndexPath];
+//    }
+//    
+//    return nil;
+//}
 
 - (nullable UIView *)pageView:(nonnull LYPageView *)pageView
                      listView:(nonnull UITableView *)listView

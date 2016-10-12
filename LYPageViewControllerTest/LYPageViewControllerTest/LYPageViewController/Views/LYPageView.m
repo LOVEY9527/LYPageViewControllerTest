@@ -77,6 +77,7 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.pagingEnabled = YES;
     self.collectionView.showsHorizontalScrollIndicator = NO;
+    self.collectionView.scrollsToTop = NO;
     [self addSubview:self.collectionView];
 }
 
@@ -213,6 +214,7 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
                                                                                forIndexPath:indexPath];
     cell.dataSource = self;
     cell.delegate = self;
+    [cell configModelColCell];
     if (self.listHeaderReUseObj != nil)
     {
         //注册列表区头视图
@@ -258,7 +260,9 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     {
         //完整的indexPath
         LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
-        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        //下面的方法使用的过程中有可能会出现返回nil,这是因为cell当前还不在tableView.visibleCells中
+//        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForItemAtPoint:cell.center];
         
         return [self.dataSource pageView:self numberOfListViewSectionInIndexPath:finalIndexPath];
     }
@@ -274,7 +278,8 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     {
         //完整的indexPath
         LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
-        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+//        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForItemAtPoint:cell.center];
         finalIndexPath.listIndexPath = indexPath;
         
         return [self.dataSource pageView:self numberOfListViewRowsInSection:finalIndexPath];
@@ -291,7 +296,8 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     {
         //完整的indexPath
         LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
-        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+//        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForItemAtPoint:cell.center];
         finalIndexPath.listIndexPath = indexPath;
         
         UITableViewCell *cell = [self.dataSource pageView:self
@@ -313,7 +319,8 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     {
         //完整的indexPath
         LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
-        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+//        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForItemAtPoint:cell.center];
         finalIndexPath.listIndexPath = indexPath;
         
         [self.delegate pageView:self didSelectedAtIndexPath:finalIndexPath];
@@ -328,7 +335,8 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     {
         //完整的indexPath
         LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
-        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+//        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForItemAtPoint:cell.center];
         finalIndexPath.listIndexPath = indexPath;
         
         return [self.delegate pageView:self heightForListViewRowAtIndexPath:finalIndexPath];
@@ -345,7 +353,8 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     {
         //完整的indexPath
         LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
-        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+//        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForItemAtPoint:cell.center];
         finalIndexPath.listIndexPath = indexPath;
         
         return [self.delegate pageView:self heightForListViewHeaderAtIndexPath:finalIndexPath];
@@ -362,7 +371,8 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     {
         //完整的indexPath
         LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
-        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+//        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForItemAtPoint:cell.center];
         finalIndexPath.listIndexPath = indexPath;
         
         return [self.delegate pageView:self heightForListViewFooterAtIndexPath:finalIndexPath];
@@ -379,7 +389,8 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     {
         //完整的indexPath
         LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
-        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+//        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForItemAtPoint:cell.center];
         finalIndexPath.listIndexPath = indexPath;
         
         return [self.delegate pageView:self listView:listView viewForListViewHeaderAtIndexPath:finalIndexPath];
@@ -396,7 +407,8 @@ NSString * const kLYPVCollectionViewCellReUseID = @"kLYPVCollectionViewCellReUse
     {
         //完整的indexPath
         LYIndexPath *finalIndexPath = [[LYIndexPath alloc] init];
-        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+//        finalIndexPath.modelIndexPath = [self.collectionView indexPathForCell:cell];
+        finalIndexPath.modelIndexPath = [self.collectionView indexPathForItemAtPoint:cell.center];
         finalIndexPath.listIndexPath = indexPath;
         
         return [self.delegate pageView:self listView:listView viewForListViewFooterAtIndexPath:finalIndexPath];

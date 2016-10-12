@@ -44,6 +44,13 @@
 //列表区的区尾的估算高度,一般跟约束一起使用(所有高低不一致或者不定的时候需要通过代理设定，代理的优先级更高)
 @property (nonatomic) CGFloat listEstimatedSectionFooterHeight NS_AVAILABLE_IOS(7_0); // default is 0, which means there is no estimate
 
+/**
+ *  @author liyong
+ *
+ *  配置模块
+ */
+- (void)configModelColCell;
+
 #pragma mark - 注册
 
 /**
